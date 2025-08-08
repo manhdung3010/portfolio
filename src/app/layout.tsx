@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="bg-background text-foreground transition-colors duration-500 ease-in-out">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Header />
-          <main className="min-h-[80vh] container mx-auto px-4 sm:px-8 pt-24 pb-16">
+          <main className="min-h-[80vh] container mx-auto px-4 sm:px-8 pt-24 ">
             {children}
           </main>
           <Footer />
