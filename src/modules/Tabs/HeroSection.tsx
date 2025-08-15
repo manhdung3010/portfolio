@@ -1,9 +1,12 @@
 'use client'
 
 import { motion } from "framer-motion";
-import { MapPinIcon, CheckCircleIcon } from "@heroicons/react/24/outline";
+import { MapPin, CheckCircle } from "lucide-react";
+import { useLanguage } from "../../app/contexts/LanguageContext";
 
 export default function HeroSection() {
+  const { t } = useLanguage();
+  
   return (
     <div className="py-12">
       <motion.div
@@ -14,18 +17,18 @@ export default function HeroSection() {
       >
         {/* Main Heading */}
         <h1 className="text-5xl lg:text-6xl font-bold mb-6 gradient-text">
-          Hi, I'm Nguyễn Mạnh Dũng
+          Hi, I&apos;m {t("profile.name")}
         </h1>
         
         {/* Location and Availability */}
         <div className="flex items-center gap-4 mb-8 text-muted-foreground">
           <div className="flex items-center gap-2">
-            <MapPinIcon className="w-5 h-5" />
-            <span>Based in Hanoi, Vietnam 🇻🇳</span>
+            <MapPin className="w-5 h-5" />
+            <span>{t("profile.location")}</span>
           </div>
           <div className="flex items-center gap-2">
-            <CheckCircleIcon className="w-5 h-5 text-green-500" />
-            <span>Available for work</span>
+            <CheckCircle className="w-5 h-5 text-green-500" />
+            <span>{t("profile.available")}</span>
           </div>
         </div>
 
@@ -36,10 +39,7 @@ export default function HeroSection() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.4 }}
         >
-          Experienced and passionate Fullstack Developer specializing in building scalable and efficient digital solutions. 
-          On the frontend, I work with React, Next.js, TypeScript, and Tailwind CSS to craft responsive and accessible user interfaces. 
-          On the backend, I develop robust services using Node.js, and for mobile, I build cross-platform apps with React Native. 
-          I'm a collaborative and detail-oriented engineer committed to delivering well-structured, high-performance applications across platforms.
+          {t("profile.description")}
         </motion.p>
 
         {/* Call to Action */}
@@ -53,13 +53,13 @@ export default function HeroSection() {
             href="#projects"
             className="px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200"
           >
-            View My Work
+            {t("actions.viewWork")}
           </a>
           <a
             href="#contact"
             className="px-6 py-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
           >
-            Get In Touch
+            {t("actions.getInTouch")}
           </a>
         </motion.div>
       </motion.div>

@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "experience": "Experience",
+    "projects": "Projects",
+    "education": "Education",
+    "contact": "Contact"
+  },
+  "profile": {
+    "name": "Nguyễn Mạnh Dũng",
+    "username": "@manhdung",
+    "location": "Based in Hanoi, Vietnam 🇻🇳",
+    "available": "Available for work",
+    "title": "Fullstack Developer",
+    "description": "Experienced and passionate Fullstack Developer specializing in building scalable and efficient digital solutions. On the frontend, I work with React, Next.js, TypeScript, and Tailwind CSS to craft responsive and accessible user interfaces. On the backend, I develop robust services using Node.js, and for mobile, I build cross-platform apps with React Native. I'm a collaborative and detail-oriented engineer committed to delivering well-structured, high-performance applications across platforms."
+  },
+  "actions": {
+    "smartTalk": "Smart Talk",
+    "viewWork": "View My Work",
+    "getInTouch": "Get In Touch",
+    "downloadCV": "Download CV",
+    "sendMessage": "Send Message"
+  },
+  "sections": {
+    "about": {
+      "title": "About Me",
+      "subtitle": "Get to know me better",
+      "description": "I am a passionate Fullstack Developer with experience in building modern web applications and mobile apps."
+    },
+    "skills": {
+      "title": "Skills & Technologies",
+      "subtitle": "What I can do",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "mobile": "Mobile",
+      "tools": "Tools & Others"
+    },
+    "experience": {
+      "title": "Work Experience",
+      "subtitle": "My professional journey",
+      "present": "Present",
+      "months": "months",
+      "years": "years"
+    },
+    "projects": {
+      "title": "Featured Projects",
+      "subtitle": "Some of my recent work",
+      "viewProject": "View Project",
+      "viewCode": "View Code",
+      "technologies": "Technologies"
+    },
+    "education": {
+      "title": "Education",
+      "subtitle": "My academic background",
+      "degree": "Degree",
+      "university": "University",
+      "graduation": "Graduation"
+    },
+    "contact": {
+      "title": "Get In Touch",
+      "subtitle": "Let's work together",
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "send": "Send Message",
+      "contactInfo": "Contact Information"
+    }
+  },
+  "common": {
+    "copyright": "COPYRIGHT © 2025 Nguyễn Mạnh Dũng. All rights reserved.",
+    "language": {
+      "en": "EN",
+      "vi": "VI"
+    },
+    "loading": "Loading...",
+    "error": "Error",
+    "success": "Success",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete"
+  }
+}

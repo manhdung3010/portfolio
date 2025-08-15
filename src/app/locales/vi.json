@@ -1,0 +1,85 @@
+{
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "skills": "Kỹ năng",
+    "experience": "Kinh nghiệm",
+    "projects": "Dự án",
+    "education": "Học vấn",
+    "contact": "Liên hệ"
+  },
+  "profile": {
+    "name": "Nguyễn Mạnh Dũng",
+    "username": "@manhdung",
+    "location": "Tại Hà Nội, Việt Nam 🇻🇳",
+    "available": "Sẵn sàng làm việc",
+    "title": "Lập trình viên Fullstack",
+    "description": "Tôi là một lập trình viên Fullstack có kinh nghiệm và đam mê trong việc xây dựng các giải pháp số hiệu quả và có thể mở rộng. Ở frontend, tôi làm việc với React, Next.js, TypeScript và Tailwind CSS để tạo ra các giao diện người dùng responsive và dễ tiếp cận. Ở backend, tôi phát triển các dịch vụ mạnh mẽ sử dụng Node.js, và cho mobile, tôi xây dựng các ứng dụng đa nền tảng với React Native. Tôi là một kỹ sư có tinh thần hợp tác và chú ý đến chi tiết, cam kết cung cấp các ứng dụng có cấu trúc tốt và hiệu suất cao trên nhiều nền tảng."
+  },
+  "actions": {
+    "smartTalk": "Trò chuyện",
+    "viewWork": "Xem dự án",
+    "getInTouch": "Liên hệ",
+    "downloadCV": "Tải CV",
+    "sendMessage": "Gửi tin nhắn"
+  },
+  "sections": {
+    "about": {
+      "title": "Về tôi",
+      "subtitle": "Tìm hiểu thêm về tôi",
+      "description": "Tôi là một lập trình viên Fullstack có đam mê với kinh nghiệm trong việc xây dựng các ứng dụng web và mobile hiện đại."
+    },
+    "skills": {
+      "title": "Kỹ năng & Công nghệ",
+      "subtitle": "Những gì tôi có thể làm",
+      "frontend": "Frontend",
+      "backend": "Backend",
+      "mobile": "Mobile",
+      "tools": "Công cụ & Khác"
+    },
+    "experience": {
+      "title": "Kinh nghiệm làm việc",
+      "subtitle": "Hành trình chuyên môn của tôi",
+      "present": "Hiện tại",
+      "months": "tháng",
+      "years": "năm"
+    },
+    "projects": {
+      "title": "Dự án nổi bật",
+      "subtitle": "Một số công việc gần đây",
+      "viewProject": "Xem dự án",
+      "viewCode": "Xem code",
+      "technologies": "Công nghệ"
+    },
+    "education": {
+      "title": "Học vấn",
+      "subtitle": "Nền tảng học thuật của tôi",
+      "degree": "Bằng cấp",
+      "university": "Đại học",
+      "graduation": "Tốt nghiệp"
+    },
+    "contact": {
+      "title": "Liên hệ",
+      "subtitle": "Hãy làm việc cùng nhau",
+      "name": "Tên",
+      "email": "Email",
+      "message": "Tin nhắn",
+      "send": "Gửi tin nhắn",
+      "contactInfo": "Thông tin liên hệ"
+    }
+  },
+  "common": {
+    "copyright": "BẢN QUYỀN © 2025 Nguyễn Mạnh Dũng. Đã đăng ký.",
+    "language": {
+      "en": "EN",
+      "vi": "VI"
+    },
+    "loading": "Đang tải...",
+    "error": "Lỗi",
+    "success": "Thành công",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "edit": "Sửa",
+    "delete": "Xóa"
+  }
+}

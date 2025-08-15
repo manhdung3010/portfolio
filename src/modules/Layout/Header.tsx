@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import ThemeToggle from "./ThemeToggle";
+import ThemeToggle from "../../app/components/ThemeToggle";
 import { motion, useScroll } from "framer-motion";
 import { useState, useEffect } from "react";
 
