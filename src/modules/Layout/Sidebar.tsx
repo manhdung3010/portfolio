@@ -33,10 +33,8 @@ export default function Sidebar({
   const navItems = [
     { id: "home", label: t("nav.home"), icon: Home },
     { id: "about", label: t("nav.about"), icon: User },
-    { id: "skills", label: t("nav.skills"), icon: Trophy },
     { id: "experience", label: t("nav.experience"), icon: BarChart3 },
     { id: "projects", label: t("nav.projects"), icon: FolderOpen },
-    { id: "education", label: t("nav.education"), icon: Trophy },
     { id: "contact", label: t("nav.contact"), icon: Mail },
   ];
 

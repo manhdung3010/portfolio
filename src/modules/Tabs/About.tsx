@@ -1,173 +1,336 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Mail, Github, Linkedin, Download } from "lucide-react";
+import { Phone, Mail, Github, Linkedin, Download, ChevronDown, ChevronUp, Calendar, MapPin, GraduationCap, Briefcase } from "lucide-react";
+import { useState } from "react";
 
 export default function About() {
-  const contactInfo = [
+  const [expandedJob, setExpandedJob] = useState<number | null>(null);
+
+  const careerJourney = [
     {
-      icon: Phone,
-      label: "Phone",
-      value: "+84 326680326",
-      href: "tel:+84326680326"
+      id: 1,
+      company: "Physcode",
+      position: "Fullstack Developer",
+      period: "03/2025 - Hiện tại",
+      location: "Hà Nội, Việt Nam",
+      type: "Full-time",
+      mode: "Onsite",
+      responsibilities: [
+        "Phát triển frontend với React.js, Next.js và TypeScript",
+        "Xây dựng backend API với Node.js và Express",
+        "Thiết kế và quản lý cơ sở dữ liệu PostgreSQL",
+        "Tối ưu hóa hiệu suất và trải nghiệm người dùng",
+        "Làm việc trong môi trường Agile/Scrum",
+        "Code review và mentoring junior developers"
+      ]
     },
     {
-      icon: Mail,
-      label: "Email", 
-      value: "ngmanhdung2003@gmail.com",
-      href: "mailto:ngmanhdung2003@gmail.com"
-    },
-    {
-      icon: Github,
-      label: "GitHub",
-      value: "manhdung3010",
-      href: "https://github.com/manhdung3010"
-    },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      value: "manhdung3010", 
-      href: "https://linkedin.com/in/manhdung3010"
+      id: 2,
+      company: "ACD TECHNOLOGY",
+      position: "Full Stack Developer",
+      period: "07/2023 - 02/2025",
+      location: "Hà Nội, Việt Nam",
+      type: "Full-time",
+      mode: "Onsite",
+      responsibilities: [
+        "Phát triển giao diện người dùng responsive với React.js",
+        "Xây dựng RESTful APIs và GraphQL endpoints",
+        "Tích hợp các dịch vụ bên thứ ba và payment gateways",
+        "Thực hiện unit testing và integration testing",
+        "Deploy và maintain ứng dụng trên cloud platforms",
+        "Collaborate với team cross-functional để deliver features"
+      ]
     }
   ];
 
+  const education = {
+    school: "Trường Đại học Mỏ – Địa chất",
+    degree: "Ngành Công nghệ Thông tin, chuyên ngành Khoa học Máy tính",
+    period: "09/2021 - 02/2024",
+    location: "Hà Nội, Việt Nam",
+    achievements: [
+      "Hoàn thành chương trình 4.5 năm trong 2.5 năm (tăng tốc 44%)",
+      "Bắt đầu đi làm từ năm thứ 2 đại học",
+      "Đạt học bổng năm 3 với GPA 3.8/4.0",
+      "Thành thạo các công nghệ web hiện đại và áp dụng thực tế",
+      "Có khả năng học hỏi nhanh và thích ứng với môi trường làm việc"
+    ]
+  };
+
   return (
-    <motion.div
-      className="flex flex-col lg:flex-row items-start gap-8"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      viewport={{ once: true }}
-    >
-      {/* Avatar Section */}
-      <motion.div 
-        className="flex-shrink-0 relative"
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-        viewport={{ once: true }}
+    <div className="py-12 flex flex-col" style={{gap: '3rem'}}>
+      {/* About Section */}
+      <motion.div
+        className="max-w-4xl"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.2 }}
       >
-        <div className="relative">
-          <div className="w-48 h-48 rounded-full bg-gradient-to-br from-primary/20 to-accent/30 p-1 animate-pulse-slow">
-            <img 
-              src="/images/avatar.jpg" 
-              alt="Nguyễn Mạnh Dũng" 
-              className="w-full h-full rounded-full object-cover border-4 border-background shadow-xl"
-            />
+        {/* Section Header */}
+        <motion.div
+          className="flex items-center gap-3 mb-6"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+        >
+          <Briefcase className="w-8 h-8 text-primary" />
+          <h2 className="text-3xl font-bold gradient-text">About</h2>
+        </motion.div>
+        
+        <motion.div 
+          className="space-y-6"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
+        >
+          <p className="text-xl leading-relaxed text-muted-foreground">
+            Tôi là <strong className="text-primary">Nguyễn Mạnh Dũng</strong>, một <strong className="text-primary">Fullstack Developer</strong> với hơn 2 năm kinh nghiệm 
+            trong việc phát triển các ứng dụng web hiện đại. Tôi đã tốt nghiệp ngành Công nghệ Thông tin tại 
+            Đại học Mỏ - Địa chất và hiện đang làm việc tại Physcode với vai trò Fullstack Developer.
+          </p>
+          <p className="text-xl leading-relaxed text-muted-foreground">
+            Phong cách làm việc của tôi tập trung vào việc tạo ra những giải pháp <strong className="text-primary">thân thiện với người dùng</strong> 
+            và <strong className="text-primary">hiệu suất cao</strong>. Tôi tin vào việc viết code rõ ràng, hiệu quả và luôn sẵn sàng học hỏi 
+            những công nghệ mới để giải quyết các vấn đề phức tạp một cách sáng tạo.
+          </p>
+          <p className="text-xl leading-relaxed text-muted-foreground">
+            Tôi đánh giá cao tầm quan trọng của giao tiếp và sự đồng bộ trong nhóm. Kinh nghiệm của tôi đã 
+            rèn luyện cho tôi những phẩm chất kỹ thuật, phân tích và lãnh đạo. Tôi rất hào hứng được học hỏi 
+            từ những người khác và đóng góp vào các dự án có tác động.
+          </p>
+          
+          <div className="pt-4">
+            <p className="text-sm text-muted-foreground">Best regards,</p>
+            <p className="text-primary font-semibold text-lg">dũng</p>
           </div>
-          <motion.div
-            className="absolute -bottom-2 -right-2 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-semibold shadow-lg"
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            Fullstack
-          </motion.div>
-        </div>
+        </motion.div>
       </motion.div>
 
-      {/* Content Section */}
-      <div className="flex-1 space-y-6">
-        {/* Header */}
+      <div className="border w-full" />
+
+      {/* Career Section */}
+      <motion.div
+        className="space-y-8"
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
+      >
+        {/* Section Header */}
+        <div className="text-start space-y-4">
+          <motion.div
+            className="flex items-center justify-start gap-3"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: 1 }}
+          >
+            <Briefcase className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl font-bold gradient-text">Career</h2>
+          </motion.div>
+          <p className="text-muted-foreground">My professional journey.</p>
+        </div>
+
+        {/* Career Cards */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          viewport={{ once: true }}
+          className="relative"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 1.2 }}
         >
-          <h1 className="text-4xl lg:text-5xl font-bold mb-3 gradient-text text-shadow py-2">
-            NGUYỄN MẠNH DŨNG
-          </h1>
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="text-xl text-muted-foreground">
-              Fullstack Developer
-            </span>
-            <div className="flex gap-2">
-              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">
-                React.js
-              </span>
-              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">
-                Next.js
-              </span>
-              <span className="bg-primary/10 text-primary px-2 py-1 rounded text-sm font-medium">
-                Node.js
-              </span>
+          <div className="relative bg-card/50 backdrop-blur-sm rounded-lg">
+            <div className="space-y-6">
+              {careerJourney.map((job, index) => (
+                <motion.div
+                  key={job.id}
+                  className="bg-background/80 border border-border rounded-lg p-6 hover:shadow-lg transition-all duration-300"
+                  initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 1.4 + index * 0.1,
+                    ease: "easeOut"
+                  }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    transition: { duration: 0.2 }
+                  }}
+                >
+                  <div className="flex gap-4">
+                    {/* Company Logo Placeholder */}
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <Briefcase className="w-6 h-6 text-primary" />
+                    </div>
+
+                    {/* Job Details */}
+                    <div className="flex-1 space-y-3">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                        <div>
+                          <h3 className="font-semibold text-lg text-primary">{job.position}</h3>
+                          <p className="text-muted-foreground">{job.company}</p>
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                          <MapPin className="w-4 h-4" />
+                          <span>{job.location}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-4 h-4" />
+                          <span>{job.period}</span>
+                        </div>
+                        <span>•</span>
+                        <span>{job.type}</span>
+                        <span>•</span>
+                        <span>{job.mode}</span>
+                      </div>
+
+                      {/* Responsibilities Toggle */}
+                      <div className="pt-2">
+                        <button
+                          onClick={() => setExpandedJob(expandedJob === job.id ? null : job.id)}
+                          className="flex items-center gap-2 text-primary text-sm font-medium hover:text-primary/80 transition-colors"
+                        >
+                          {expandedJob === job.id ? (
+                            <ChevronUp className="w-4 h-4" />
+                          ) : (
+                            <ChevronDown className="w-4 h-4" />
+                          )}
+                          {expandedJob === job.id ? "Hide responsibilities" : "Show responsibilities"}
+                        </button>
+                        
+                        <motion.div
+                          initial={false}
+                          animate={{
+                            height: expandedJob === job.id ? "auto" : 0,
+                            opacity: expandedJob === job.id ? 1 : 0
+                          }}
+                          transition={{ duration: 0.3 }}
+                          className="overflow-hidden"
+                        >
+                          <ul className="space-y-2 pt-3 pl-4 text-sm text-muted-foreground">
+                            {job.responsibilities.map((responsibility, respIndex) => (
+                              <li key={respIndex} className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                                {responsibility}
+                              </li>
+                            ))}
+                          </ul>
+                        </motion.div>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
           </div>
         </motion.div>
+      </motion.div>
 
-        {/* Description */}
-        <motion.div
-          className="space-y-4"
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.3, duration: 0.5 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-lg leading-relaxed max-w-3xl">
-            Tôi là một <strong className="text-primary">Fullstack Developer</strong> với hơn 2 năm kinh nghiệm chuyên sâu trong việc thiết kế và phát
-            triển giao diện người dùng cho các ứng dụng web sử dụng React.js và Next.js. Tôi tập trung vào
-            việc xây dựng các giải pháp tối ưu về hiệu suất, tính tương tác và trải nghiệm người dùng.
-          </p>
-          <p className="text-base leading-relaxed max-w-3xl text-muted-foreground">
-            Tôi luôn tìm tòi, học hỏi các công nghệ mới và áp dụng các phương pháp tốt nhất để không ngừng hoàn
-            thiện kỹ năng, đồng thời tạo ra những sản phẩm chất lượng, hiện đại và tối ưu.
-          </p>
-        </motion.div>
+      <div className="border w-full" />
 
-        {/* Contact Info */}
+      {/* Education Section */}
+      <motion.div
+        className="space-y-8"
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.6 }}
+      >
+        {/* Section Header */}
+        <div className="text-start space-y-4">
+          <motion.div
+            className="flex items-center justify-start gap-3"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.5, delay: 1.8 }}
+          >
+            <GraduationCap className="w-8 h-8 text-primary" />
+            <h2 className="text-3xl font-bold gradient-text">Education</h2>
+          </motion.div>
+          <p className="text-muted-foreground">My educational journey.</p>
+        </div>
+
+        {/* Education Card */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          viewport={{ once: true }}
+          className="relative"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 2 }}
         >
-          {contactInfo.map((contact, index) => {
-            const Icon = contact.icon;
-            return (
-              <motion.a
-                key={contact.label}
-                href={contact.href}
-                target={contact.label === "GitHub" || contact.label === "LinkedIn" ? "_blank" : undefined}
-                rel={contact.label === "GitHub" || contact.label === "LinkedIn" ? "noopener noreferrer" : undefined}
-                className="flex items-center gap-3 p-3 rounded-lg bg-card border border-border hover:bg-accent transition-all duration-200 group"
-                whileHover={{ x: 5 }}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5 + index * 0.1, duration: 0.4 }}
-                viewport={{ once: true }}
-              >
-                <Icon className="w-5 h-5 text-primary group-hover:scale-110 transition-transform" />
-                <div>
-                  <div className="text-sm font-medium text-muted-foreground">{contact.label}</div>
-                  <div className="font-semibold group-hover:text-primary transition-colors">
-                    {contact.value}
+          <div className="relative bg-card/50 backdrop-blur-sm rounded-lg">
+            <motion.div 
+              className="bg-background/80 border border-border rounded-lg p-6"
+              initial={{ opacity: 0, scale: 0.5, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                delay: 2.2,
+                ease: "easeOut"
+              }}
+              whileHover={{ 
+                scale: 1.02,
+                transition: { duration: 0.2 }
+              }}
+            >
+              <div className="flex gap-4">
+                {/* University Logo Placeholder */}
+                <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <GraduationCap className="w-6 h-6 text-primary" />
+                </div>
+
+                {/* Education Details */}
+                <div className="flex-1 space-y-3">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                    <div>
+                      <h3 className="font-semibold text-lg text-primary">{education.school}</h3>
+                      <p className="text-muted-foreground">{education.degree}</p>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <MapPin className="w-4 h-4" />
+                      <span>{education.location}</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                    <Calendar className="w-4 h-4" />
+                    <span>{education.period}</span>
+                  </div>
+
+                  {/* Achievements */}
+                  <div className="pt-2">
+                    <h4 className="font-semibold text-lg text-primary">Achievements:</h4>
+                    <ul className="space-y-2 ml-3 text-sm text-muted-foreground">
+                      {education.achievements.map((achievement, index) => (
+                        <li key={index} className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                          {achievement}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
-              </motion.a>
-            );
-          })}
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
 
-        {/* Download CV Button */}
+        {/* Download Buttons */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.5 }}
-          viewport={{ once: true }}
+          className="flex flex-wrap justify-center gap-4"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.7, delay: 2.4 }}
         >
-          <a
-            href="/cv-nguyen-manh-dung.pdf"
-            download
-            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl"
-          >
-            <Download className="w-5 h-5" />
-            Tải CV
-          </a>
+          <button className="px-6 py-3 bg-primary text-primary-foreground hover:text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200 flex items-center gap-2">
+            <Download className="w-4 h-4" />
+            Download Portfolio
+          </button>
+          <button className="px-6 py-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors duration-200 flex items-center gap-2">
+            <Download className="w-4 h-4" />
+            Download Resume
+          </button>
         </motion.div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

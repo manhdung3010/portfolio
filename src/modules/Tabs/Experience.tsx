@@ -1,13 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Building2, Calendar, Users, ExternalLink, Code, Database, Cloud } from "lucide-react";
+import { Building2, Calendar, Users, ExternalLink, Code, Database, Cloud, ChevronDown, ChevronUp, MapPin, Briefcase } from "lucide-react";
+import { useState } from "react";
 
 const experiences = [
   {
     company: "Physcode",
     role: "Fullstack Developer",
-    time: "3/2025 - Nay",
+    time: "03/2025 - Hiện tại",
+    location: "Hà Nội, Việt Nam",
+    type: "Full-time",
+    mode: "Onsite",
     logo: "🏢",
     projects: [
       {
@@ -23,7 +27,6 @@ const experiences = [
           "Hỗ trợ phát triển back-end bằng cách sửa lỗi và cải thiện mã nguồn back-end khi cần thiết."
         ]
       },
-
       {
         name: "Washbank – Hệ thống quản lý chuỗi cửa hàng rửa xe",
         description: "Phát triển nền tảng quản trị toàn diện cho ngành rửa xe tại Hàn Quốc. Xây dựng hệ thống đặt lịch, xử lý thanh toán và dashboard quản lý chi tiết",
@@ -45,7 +48,10 @@ const experiences = [
   {
     company: "ACD TECHNOLOGY",
     role: "Full Stack Developer",
-    time: "07/2023 - 2/2025",
+    time: "07/2023 - 02/2025",
+    location: "Hà Nội, Việt Nam",
+    type: "Full-time",
+    mode: "Onsite",
     logo: "🏢",
     projects: [
       {
@@ -76,11 +82,10 @@ const experiences = [
           "Đưa ra phản hồi và đề xuất cải tiến thiết kế giao diện người dùng nhằm nâng cao trải nghiệm người dùng."
         ]
       },
-
       {
         name: "Decoraz",
         description: "Một trang web thương mại điện tử cung cấp đầy đủ các tính năng thường có trên các nền tảng bán lẻ trực tuyến. Trang web bao gồm danh sách sản phẩm, bài viết blog, quản lý giảm giá và khuyến mãi, chức năng giỏ hàng, tài khoản người dùng, chính sách, thông tin liên hệ, các tùy chọn mua sắm và chương trình liên kết.",
-       tech: ["NextJs", "Material UI", "Tailwind CSS", "Java Spring Boot", "MySQL"],
+        tech: ["NextJs", "Material UI", "Tailwind CSS", "Java Spring Boot", "MySQL"],
         demo: "https://decoraz.vn",
         responsibilities: [
           "Phát triển và triển khai front-end cho trang web, đảm bảo tính năng và trải nghiệm người dùng.",
@@ -91,155 +96,209 @@ const experiences = [
         ],
         features: ["E-commerce", "SEO Optimization", "Admin Dashboard", "Responsive Design", "Payment Integration"]
       }
-     
     ]
   }
 ];
 
 export default function Experience() {
+  const [expandedCompany, setExpandedCompany] = useState<number | null>(null);
+  const [expandedProjects, setExpandedProjects] = useState<{ [key: string]: boolean }>({});
+
+  const toggleProject = (companyIndex: number, projectIndex: number) => {
+    const key = `${companyIndex}-${projectIndex}`;
+    setExpandedProjects(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
   return (
-    <motion.div
-      className="space-y-8"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      viewport={{ once: true }}
-    >
-      {experiences.map((exp, idx) => (
-        <motion.div 
-          key={idx} 
-          className="relative"
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: idx * 0.2 }}
-          viewport={{ once: true }}
+    <div className="py-12 flex flex-col" style={{gap: '3rem'}}>
+      {/* Experience Header */}
+      <motion.div
+        className="max-w-4xl"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.2 }}
+      >
+        <motion.div
+          className="flex items-center gap-3 mb-6"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
         >
-          {/* Timeline Line */}
-          <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary to-muted" />
-          
-          <div className="bg-card rounded-xl shadow-lg p-6 border border-border ml-16 relative card-hover">
-            {/* Company Header */}
-            <div className="flex items-start justify-between mb-6">
-              <div className="flex items-center gap-4">
-                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center text-2xl">
-                  {exp.logo}
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-primary">{exp.company}</h3>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                    <div className="flex items-center gap-1">
-                      <Building2 className="w-4 h-4" />
-                      <span>{exp.role}</span>
-                    </div>
-                    <div className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>{exp.time}</span>
+          <Briefcase className="w-8 h-8 text-primary" />
+          <h2 className="text-3xl font-bold gradient-text">Experience</h2>
+        </motion.div>
+        <p className="text-xl leading-relaxed text-muted-foreground">
+          My professional journey across diverse projects and technologies, demonstrating expertise in full-stack development and modern web applications.
+        </p>
+      </motion.div>
+
+      <div className="border w-full" />
+
+      {/* Experience Timeline */}
+      <motion.div
+        className="space-y-8"
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.8 }}
+      >
+        {experiences.map((exp, idx) => (
+          <motion.div
+            key={idx}
+            className="relative"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1 + idx * 0.2 }}
+          >
+            {/* Timeline connector */}
+            {idx < experiences.length - 1 && (
+              <div className="absolute left-8 top-20 w-0.5 h-32 bg-gradient-to-b from-primary/50 to-transparent"></div>
+            )}
+
+            <div className="flex gap-6">
+              {/* Timeline dot */}
+              
+
+              {/* Experience content */}
+              <div className="flex-1">
+                <motion.div
+                  className="bg-card/50 backdrop-blur-sm border border-border rounded-xl p-6 hover:shadow-lg transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  {/* Company Header */}
+                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
+                  <div className="flex gap-2">
+                      <div className="relative">
+                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg">
+                          <Building2 className="w-8 h-8 text-white" />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <h3 className="text-2xl font-bold text-primary">{exp.company}</h3>
+                        <p className="text-lg font-semibold">{exp.role}</p>
+                      </div>
+                  </div>
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {exp.time}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <MapPin className="w-4 h-4" />
+                        {exp.location}
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">
+                          {exp.type}
+                        </span>
+                        <span className="bg-accent px-2 py-1 rounded text-xs font-medium">
+                          {exp.mode}
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-              
-              {/* Timeline Dot */}
-              <div className="absolute -left-8 top-6 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg" />
-            </div>
-            
-            {/* Projects */}
-            <div className="space-y-6">
-              {exp.projects.map((project, projectIdx) => (
-                <motion.div 
-                  key={projectIdx} 
-                  className="border-l-4 border-primary/30 pl-6 space-y-4"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 + projectIdx * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <div>
-                    <div className="flex items-center gap-2 mb-3">
-                      <h4 className="font-semibold text-lg text-primary">🔸 {project.name}</h4>
-                      {project.demo && (
-                        <a
-                          href={project.demo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
-                        >
-                          <ExternalLink className="w-4 h-4" />
-                          Demo
-                        </a>
-                      )}
-                    </div>
-                    
-                    <p className="text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
-                    
-                    {project.tech && (
-                      <div className="mb-4">
-                        <div className="flex items-center gap-2 mb-2">
-                          <Code className="w-4 h-4 text-primary" />
-                          <span className="font-semibold text-sm text-primary">Công nghệ:</span>
+
+                  {/* Projects */}
+                  <div className="space-y-4">
+                    {exp.projects.map((project, projectIdx) => (
+                      <motion.div
+                        key={projectIdx}
+                        className="bg-background/80 border border-border rounded-lg p-4"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 1.2 + idx * 0.2 + projectIdx * 0.1, duration: 0.5 }}
+                      >
+                        <div className="space-y-3">
+                          {/* Project Header */}
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="flex-1">
+                              <div className="flex items-center gap-2 mb-2">
+                                <h4 className="font-semibold text-lg text-primary">🔸 {project.name}</h4>
+                                {project.demo && (
+                                  <a
+                                    href={project.demo}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
+                                  >
+                                    <ExternalLink className="w-4 h-4" />
+                                    Demo
+                                  </a>
+                                )}
+                              </div>
+                              <p className="text-muted-foreground text-sm leading-relaxed">{project.description}</p>
+                            </div>
+                          </div>
+
+                          {/* Technologies */}
+                          {project.tech && (
+                            <div className="space-y-2">
+                              <div className="flex items-center gap-2">
+                                <Code className="w-4 h-4 text-primary" />
+                                <span className="font-semibold text-sm text-primary">Technologies:</span>
+                              </div>
+                              <div className="flex flex-wrap gap-2">
+                                {project.tech.map((tech, techIdx) => (
+                                  <span
+                                    key={techIdx}
+                                    className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium hover:bg-primary/20 transition-colors"
+                                  >
+                                    {tech}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Responsibilities Toggle */}
+                          <div className="space-y-2">
+                            <button
+                              onClick={() => toggleProject(idx, projectIdx)}
+                              className="flex items-center gap-2 text-primary text-sm font-medium hover:text-primary/80 transition-colors"
+                            >
+                              {expandedProjects[`${idx}-${projectIdx}`] ? (
+                                <ChevronUp className="w-4 h-4" />
+                              ) : (
+                                <ChevronDown className="w-4 h-4" />
+                              )}
+                              {expandedProjects[`${idx}-${projectIdx}`] ? "Hide responsibilities" : "Show responsibilities"}
+                            </button>
+
+                            <motion.div
+                              initial={false}
+                              animate={{
+                                height: expandedProjects[`${idx}-${projectIdx}`] ? "auto" : 0,
+                                opacity: expandedProjects[`${idx}-${projectIdx}`] ? 1 : 0
+                              }}
+                              transition={{ duration: 0.3 }}
+                              className="overflow-hidden"
+                            >
+                              <div className="flex items-center gap-2 mb-2 pt-2">
+                                <Users className="w-4 h-4 text-primary" />
+                                <span className="font-semibold text-sm text-primary">Responsibilities:</span>
+                              </div>
+                              <ul className="space-y-2 pl-6">
+                                {project.responsibilities.map((resp, respIdx) => (
+                                  <li key={respIdx} className="text-sm text-muted-foreground flex items-start gap-2">
+                                    <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                                    <span className="leading-relaxed">{resp}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </motion.div>
+                          </div>
                         </div>
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.map((tech, techIdx) => (
-                            <span key={techIdx} className="bg-accent px-3 py-1 rounded-full text-xs font-medium hover:bg-primary/10 hover:text-primary transition-colors">
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    )}
-                    
-                    {project.responsibilities && (
-                      <div>
-                        <div className="flex items-center gap-2 mb-2">
-                          <Users className="w-4 h-4 text-primary" />
-                          <span className="font-semibold text-sm text-primary">Trách nhiệm:</span>
-                        </div>
-                        <ul className="space-y-2">
-                          {project.responsibilities.map((resp, respIdx) => (
-                            <li key={respIdx} className="text-sm text-muted-foreground flex items-start gap-3">
-                              <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                              <span className="leading-relaxed">{resp}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
+                      </motion.div>
+                    ))}
                   </div>
                 </motion.div>
-              ))}
+              </div>
             </div>
-          </div>
-        </motion.div>
-      ))}
-
-      {/* Experience Summary */}
-      <motion.div
-        className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl p-6 border border-primary/20 text-center"
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        viewport={{ once: true }}
-      >
-        <h3 className="text-xl font-bold text-primary mb-3">Tổng quan kinh nghiệm</h3>
-        <p className="text-muted-foreground mb-4">
-          Với kinh nghiệm làm việc tại các công ty công nghệ hàng đầu, tôi đã tham gia phát triển nhiều dự án 
-          đa dạng từ ứng dụng web đến hệ thống quản lý phức tạp, tích lũy kiến thức toàn diện về Fullstack Development.
-        </p>
-        <div className="flex flex-wrap justify-center gap-6">
-          <div className="text-center">
-            <div className="text-2xl font-bold text-primary">2</div>
-            <div className="text-sm text-muted-foreground">Công ty</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-primary">5+</div>
-            <div className="text-sm text-muted-foreground">Dự án chính</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-primary">2+</div>
-            <div className="text-sm text-muted-foreground">Năm kinh nghiệm</div>
-          </div>
-        </div>
+          </motion.div>
+        ))}
       </motion.div>
-    </motion.div>
+    </div>
   );
 }

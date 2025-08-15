@@ -8,9 +8,9 @@ export default function HomePage() {
     const [activeTab, setActiveTab] = useState("home");
 
     return (
-        <div className="flex">
+        <div className="flex h-screen">
         <Sidebar activeTab={activeTab} onTabChange={setActiveTab} />
-        <main className="flex-1 lg:ml-80 min-h-screen">
+        <main className="flex-1 lg:ml-80 h-full overflow-hidden">
           <TabContent activeTab={activeTab} onTabChange={setActiveTab} />
         </main>
       </div>
