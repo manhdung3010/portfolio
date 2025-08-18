@@ -101,7 +101,6 @@
   }
 
   a:hover, button:hover {
-    color: var(--primary);
     transform: translateY(-2px) scale(1.02);
   }
 
@@ -134,6 +133,15 @@
 }
 
 @layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+  }
+
   ::-webkit-scrollbar {
     width: 8px;
     background: var(--secondary);

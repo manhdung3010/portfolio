@@ -22,7 +22,7 @@ export default function LanguageToggle() {
         className={`px-3 py-1 text-xs font-medium rounded-md transition-all duration-200 flex items-center gap-1 ${
           language === 'en'
             ? 'bg-primary text-primary-foreground shadow-sm'
-            : 'text-muted-foreground hover:text-foreground'
+            : 'text-muted-foreground hover:text-primary'
         }`}
       >
         <Globe className="w-3 h-3" />
@@ -35,7 +35,7 @@ export default function LanguageToggle() {
         className={`px-3 py-1 text-xs font-medium rounded-md transition-all duration-200 flex items-center gap-1 ${
           language === 'vi'
             ? 'bg-primary text-primary-foreground shadow-sm'
-            : 'text-muted-foreground hover:text-foreground'
+            : 'text-muted-foreground hover:text-primary'
         }`}
       >
         <Languages className="w-3 h-3" />

@@ -4,6 +4,7 @@
     "about": "About",
     "skills": "Skills",
     "experience": "Experience",
+    "achievements": "Achievements",
     "projects": "Projects",
     "education": "Education",
     "contact": "Contact"
@@ -50,6 +51,25 @@
       "viewProject": "View Project",
       "viewCode": "View Code",
       "technologies": "Technologies"
+    },
+    "achievements": {
+      "title": "Achievements & Certificates",
+      "subtitle": "Some highlights and certificates earned during my learning and practice at F8 (Fullstack.edu.vn), reflecting continuous learning and growth.",
+      "viewCourse": "View course",
+      "clickToView": "Click to view",
+      "enlarge": "View larger",
+      "close": "Close preview",
+      "issuer": "F8 - Fullstack.edu.vn",
+      "level": {
+        "basic": "Basic",
+        "advanced": "Advanced",
+        "tools": "Tools"
+      },
+      "certs": {
+        "jsAdvanced": "Advanced JavaScript Certificate",
+        "jsBasic": "Basic JavaScript Certificate",
+        "ubuntuWsl": "Ubuntu & WSL - Developer Tools"
+      }
     },
     "education": {
       "title": "Education",

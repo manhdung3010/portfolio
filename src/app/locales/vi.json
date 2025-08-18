@@ -4,6 +4,7 @@
     "about": "Giới thiệu",
     "skills": "Kỹ năng",
     "experience": "Kinh nghiệm",
+    "achievements": "Thành tích",
     "projects": "Dự án",
     "education": "Học vấn",
     "contact": "Liên hệ"
@@ -50,6 +51,25 @@
       "viewProject": "Xem dự án",
       "viewCode": "Xem code",
       "technologies": "Công nghệ"
+    },
+    "achievements": {
+      "title": "Thành tựu & Chứng chỉ",
+      "subtitle": "Một số thành tựu và chứng chỉ tiêu biểu mình đạt được trong quá trình học và thực hành tại F8 (Fullstack.edu.vn), thể hiện tinh thần học hỏi và phát triển liên tục.",
+      "viewCourse": "Xem khóa học",
+      "clickToView": "Nhấp để xem",
+      "enlarge": "Xem lớn",
+      "close": "Đóng xem ảnh",
+      "issuer": "F8 - Fullstack.edu.vn",
+      "level": {
+        "basic": "Cơ bản",
+        "advanced": "Nâng cao",
+        "tools": "Công cụ"
+      },
+      "certs": {
+        "jsAdvanced": "Chứng chỉ JavaScript Nâng cao",
+        "jsBasic": "Chứng chỉ JavaScript Cơ bản",
+        "ubuntuWsl": "Ubuntu & WSL - Công cụ dành cho Dev"
+      }
     },
     "education": {
       "title": "Học vấn",

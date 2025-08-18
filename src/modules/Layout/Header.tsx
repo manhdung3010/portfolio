@@ -77,7 +77,7 @@ export default function Header() {
                     delay: 0.2 + index * 0.05,
                   }}
                   whileHover={{ y: -2 }}
-                  className="relative text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer group"
+                  className="relative text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-200 cursor-pointer group"
                 >
                   {item.label}
                   <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full"></span>
@@ -149,7 +149,7 @@ export default function Header() {
                 delay: isMobileMenuOpen ? index * 0.05 : 0,
               }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="px-6 py-3 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-accent transition-colors duration-200 cursor-pointer"
+              className="px-6 py-3 text-sm font-medium text-muted-foreground hover:text-primary hover:bg-accent transition-colors duration-200 cursor-pointer"
             >
               {item.label}
             </motion.a>

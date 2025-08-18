@@ -7,6 +7,7 @@ import Experience from "../Tabs/Experience";
 import Projects from "../Tabs/Projects";
 import Contact from "../Tabs/Contact";
 import HeroSection from "../Tabs/HeroSection";
+import Achievements from "../Tabs/Achievements";
 
 interface TabContentProps {
   activeTab: string;
@@ -17,6 +18,7 @@ const tabs = [
   { id: "home", label: "Home", component: HeroSection },
   { id: "about", label: "About", component: About },
   { id: "experience", label: "Experience", component: Experience },
+  { id: "achievements", label: "Achievements", component: Achievements },
   { id: "projects", label: "Projects", component: Projects },
   { id: "contact", label: "Contact", component: Contact },
 ];

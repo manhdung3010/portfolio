@@ -1,207 +1,357 @@
 "use client";
 
+import { useState } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Eye, Code, Users, Calendar } from "lucide-react";
+import Modal from "@/app/components/Modal";
+import {
+  Github,
+  Eye,
+  FolderOpen,
+  CheckCircle,
+} from "lucide-react";
 
-const projects = [
+type Screenshot = {
+  title: string;
+  url: string;
+  desc: string;
+};
+
+type Features = {
+  frontend: string[];
+  backend: string[];
+  ai: string[];
+  admin: string[];
+};
+
+type Repositories = {
+  frontend?: string;
+  backend?: string;
+  ai?: string;
+  admin?: string;
+};
+
+type Project = {
+  title: string;
+  cover: string;
+  description: string;
+  role: string;
+  tech: string[];
+  repos?: Repositories;
+  demo?: string;
+  video?: string;
+  screenshots: Screenshot[];
+  features: Features;
+  responsibilities: string[];
+};
+
+const projects: Project[] = [
   {
     title: "WorldReader",
-    image: "/projects/worldreader.png",
-    description: "WorldReader là một dự án tập trung vào việc xây dựng các API cho một cửa hàng sách trực tuyến, tích hợp đầy đủ các tính năng thiết yếu của một trang web thương mại điện tử điển hình. Các tính năng bao gồm quản lý sản phẩm, tài khoản người dùng, giỏ hàng, giảm giá, xử lý đơn hàng và nhiều tính năng khác.",
-    role: "Backend Developer (1 thành viên)",
-    tech: ["NestJs", "MySQL", "TypeORM", "JWT", "Google OAuth2.0", "Swagger"],
-    link: "https://github.com/manhdung3010/WordReader-Backend",
-    demo: null,
-    responsibilities: [
-      "Phát triển các API cho ứng dụng sử dụng NestJS, đảm bảo tính mở rộng và dễ bảo trì.",
-      "Tích hợp xác thực JWT để đảm bảo đăng nhập người dùng an toàn và quản lý phiên làm việc.",
-      "Triển khai Google OAuth2.0 để người dùng có thể đăng nhập liền mạch với tài khoản Google.",
-      "Thiết kế và phát triển các tính năng quản lý sản phẩm trong chương trình flash sale.",
-      "Tài liệu hóa API bằng Swagger, cung cấp tài liệu API rõ ràng và tương tác.",
-      "Đảm bảo chất lượng và tính nhất quán của mã nguồn thông qua các thực hành mã hóa đúng đắn và kiến trúc module."
+    cover: "/images/project/worldreader/cover.png",
+    description:
+      "WorldReader là một nền tảng thương mại điện tử sách toàn diện, tôi tự phát triển từ đầu với kiến trúc microservice gồm 3 phần: Frontend (Next.js + React), Backend (NestJS + MySQL), và AI Service (Flask + ML). Hệ thống tích hợp đầy đủ tính năng e-commerce hiện đại, kèm hệ thống gợi ý sách thông minh và chatbot AI.",
+    role: "Full-stack & AI Developer (Solo Project)",
+    tech: [
+      "Next.js",
+      "React",
+      "TailwindCSS",
+      "Ant Design",
+      "NestJS",
+      "MySQL",
+      "TypeORM",
+      "JWT",
+      "Google OAuth2.0",
+      "Swagger",
+      "Flask",
+      "Scikit-learn",
+      "FAISS",
+      "Python NLP",
     ],
-    features: ["RESTful API", "Authentication", "Authorization", "Database Design", "API Documentation"]
+    repos: {
+      frontend: "https://github.com/manhdung3010/WorldReader-FE",
+      admin: "https://github.com/manhdung3010/WorldReader-Admin",
+      backend: "https://github.com/manhdung3010/WorldReader-BE",
+      ai: "https://github.com/manhdung3010/WorldReader-AI",
+    },
+    demo: "https://worldreader-demo.vercel.app",
+    video: "https://youtu.be/demo-video-worldreader",
+    screenshots: [
+      {
+        title: "Trang chủ",
+        url: "/images/project/worldreader/cover.png",
+        desc: "Giao diện trang chủ hiển thị danh sách sách nổi bật, bộ lọc, tìm kiếm.",
+      },
+      {
+        title: "Chi tiết sản phẩm",
+        url: "/images/project/worldreader/product.png",
+        desc: "Trang chi tiết sách với thông tin, đánh giá, gợi ý sách liên quan.",
+      },
+      {
+        title: "Giỏ hàng & Thanh toán",
+        url: "/images/project/worldreader/cart.png",
+        desc: "Giỏ hàng với xử lý giảm giá, voucher, nhiều phương thức thanh toán.",
+      },
+      {
+        title: "Admin Dashboard",
+        url: "/images/project/worldreader/admin.png",
+        desc: "Trang quản trị quản lý người dùng, đơn hàng, sản phẩm, flash sale.",
+      },
+      {
+        title: "AI Recommendation",
+        url: "/images/project/worldreader/ai.png",
+        desc: "Sơ đồ kiến trúc tổng thể phân lớp với module AI Service",
+      },
+      {
+        title: "Chatbot AI",
+        url: "/images/project/worldreader/chatbot.png",
+        desc: "Chatbot AI hỗ trợ tư vấn và tìm kiếm sách thông minh.",
+      },
+    ],
+    features: {
+      frontend: [
+        "Responsive UI/UX với Next.js, React, TailwindCSS, Ant Design",
+        "Trang chủ, danh mục, chi tiết sản phẩm, giỏ hàng, thanh toán",
+        "Authentication flow (Login, Register, OAuth2.0, Forgot password)",
+        "Multi-language & Dark mode support",
+      ],
+      backend: [
+        "API xây dựng với NestJS (RESTful)",
+        "Authentication & Authorization (JWT, Google OAuth2.0)",
+        "Quản lý sản phẩm, đơn hàng, voucher, flash sale",
+        "Swagger API Documentation",
+      ],
+      ai: [
+        "Recommendation System (Collaborative Filtering + Content-based)",
+        "Chatbot AI sử dụng NLP (Python + Flask + Scikit-learn)",
+        "Vector Search với FAISS cho truy vấn ngữ nghĩa",
+      ],
+      admin: [
+        "Admin Dashboard role-based",
+        "Quản lý người dùng, sản phẩm, đơn hàng",
+        "Phân quyền và thống kê hệ thống",
+      ],
+    },
+    responsibilities: [
+      "Phân tích, thiết kế kiến trúc tổng thể hệ thống với mô hình microservice.",
+      "Phát triển frontend với Next.js, React, TailwindCSS, Ant Design.",
+      "Phát triển backend API với NestJS, TypeORM, MySQL, tích hợp xác thực JWT và Google OAuth2.0.",
+      "Thiết kế và tối ưu cơ sở dữ liệu MySQL với hơn 15 bảng quan hệ.",
+      "Xây dựng AI Service với Flask (Python), triển khai Recommendation Engine và Chatbot.",
+      "Tích hợp các dịch vụ AI vào frontend và backend thông qua API.",
+      "Viết tài liệu API chi tiết bằng Swagger, hỗ trợ kiểm thử và tích hợp dễ dàng.",
+      "Tối ưu hiệu năng, cache, và triển khai CI/CD.",
+    ],
+  
   },
-  {
-    title: "Decoraz",
-    image: "/projects/decoraz.png",
-    description: "Một trang web thương mại điện tử cung cấp đầy đủ các tính năng thường có trên các nền tảng bán lẻ trực tuyến. Trang web bao gồm danh sách sản phẩm, bài viết blog, quản lý giảm giá và khuyến mãi, chức năng giỏ hàng, tài khoản người dùng, chính sách, thông tin liên hệ, các tùy chọn mua sắm và chương trình liên kết.",
-    role: "Fullstack Developer (3 thành viên)",
-    tech: ["NextJs", "Material UI", "Tailwind CSS", "Java Spring Boot", "MySQL"],
-    link: "https://github.com/manhdung3010/decoraz",
-    demo: "https://decoraz.vn",
-    responsibilities: [
-      "Phát triển và triển khai front-end cho trang web, đảm bảo tính năng và trải nghiệm người dùng.",
-      "Thiết kế và xây dựng các trang web dựa trên mockup hoặc mẫu thiết kế đã được cung cấp.",
-      "Tối ưu hóa trang web cho SEO để cải thiện khả năng hiển thị và thứ hạng trên công cụ tìm kiếm.",
-      "Tạo và phát triển bảng điều khiển quản trị để quản lý nội dung và các tính năng của trang web.",
-      "Xử lý quy trình triển khai để đảm bảo trang web hoạt động mượt mà và ổn định."
-    ],
-    features: ["E-commerce", "SEO Optimization", "Admin Dashboard", "Responsive Design", "Payment Integration"]
-  }
 ];
 
-export default function Projects() {
+// ================== Modal Content Component ==================
+function ProjectDetailContent({ project }: { project: Project }) {
   return (
-    <motion.div
-      className="space-y-8"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.7, ease: "easeOut" }}
-      viewport={{ once: true }}
-    >
-      {projects.map((project, idx) => (
-        <motion.div
-          key={idx}
-          className="bg-card rounded-xl shadow-lg overflow-hidden border border-border card-hover"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: idx * 0.2 }}
-          viewport={{ once: true }}
-          whileHover={{ y: -8 }}
-        >
-          <div className="p-6 space-y-6">
-            <div className="flex flex-col lg:flex-row gap-6">
-              {/* Project Image */}
-              <div className="flex-shrink-0">
-                <div className="relative w-full lg:w-80 h-48 bg-gradient-to-br from-primary/10 to-accent/20 rounded-lg overflow-hidden">
-                  {project.image ? (
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="object-cover w-full h-full"
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <div className="text-center">
-                        <Code className="w-12 h-12 text-primary/50 mx-auto mb-2" />
-                        <p className="text-sm text-muted-foreground">Project Preview</p>
-                      </div>
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-                </div>
+    <div>
+      <h2 className="text-3xl font-bold text-primary mb-2">{project.title}</h2>
+      <p className="text-muted-foreground mb-6">{project.description}</p>
+
+      {/* Video Demo */}
+      {project.video && (
+        <div className="mb-6">
+          <iframe
+            width="100%"
+            height="400"
+            src={project.video.replace("watch?v=", "embed/")}
+            title="Demo Video"
+            className="rounded-lg"
+            allowFullScreen
+          />
+        </div>
+      )}
+
+      {/* Screenshots */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+        {project.screenshots.map((s, i) => (
+          <div key={i} className="space-y-2">
+            <Image
+              src={s.url}
+              alt={s.title}
+              width={800}
+              height={500}
+              className="rounded-lg border shadow-sm w-full object-cover"
+            />
+            <p className="text-sm text-muted-foreground">
+              <strong>{s.title}:</strong> {s.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+
+      {/* Features */}
+      <div className="mb-8">
+        <h3 className="text-xl font-bold text-primary mb-3">Key Features</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {(Object.entries(project.features) as Array<[string, string[]]>).map(
+            ([section, items], i) => (
+              <div key={i}>
+                <h4 className="font-semibold mb-2 capitalize">{section}</h4>
+                <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
+                  {items.map((f, idx) => (
+                    <li key={idx}>{f}</li>
+                  ))}
+                </ul>
               </div>
-              
-              {/* Project Content */}
-              <div className="flex-1 space-y-4">
-                {/* Header */}
-                <div>
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="font-bold text-2xl text-primary">{project.title}</h3>
-                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                      <Users className="w-4 h-4" />
-                      <span>{project.role}</span>
-                    </div>
-                  </div>
-                  <p className="text-base leading-relaxed text-muted-foreground">{project.description}</p>
-                </div>
-                
-                {/* Features */}
-                {project.features && (
-                  <div>
-                    <div className="flex items-center gap-2 mb-2">
-                      <Code className="w-4 h-4 text-primary" />
-                      <span className="font-semibold text-sm text-primary">Tính năng chính:</span>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                      {project.features.map((feature, i) => (
-                        <span key={i} className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">
-                          {feature}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+            )
+          )}
+        </div>
+      </div>
+
+      {/* Responsibilities */}
+      <div className="mb-8">
+        <h3 className="text-xl font-bold text-primary mb-3">Responsibilities</h3>
+        <ul className="space-y-2 text-sm text-muted-foreground list-disc pl-5">
+          {project.responsibilities.map((resp, idx) => (
+            <li key={idx}>{resp}</li>
+          ))}
+        </ul>
+      </div>
+
+
+      {/* Tech Stack */}
+      <div className="mb-8">
+        <h3 className="text-xl font-bold text-primary mb-3">Technologies</h3>
+        <div className="flex flex-wrap gap-2">
+          {project.tech.map((t, i) => (
+            <span
+              key={i}
+              className="bg-accent px-3 py-1 rounded-full text-xs font-medium hover:bg-primary/10 hover:text-primary transition-colors"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Repositories & Demo */}
+      <div className="flex flex-wrap gap-3">
+        {project.demo && (
+          <a
+            href={project.demo}
+            target="_blank"
+            className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90"
+          >
+            <Eye className="w-4 h-4" />
+            Live Demo
+          </a>
+        )}
+        {project.repos?.frontend && (
+          <a
+            href={project.repos.frontend}
+            target="_blank"
+            className="inline-flex items-center gap-2 border px-4 py-2 rounded-lg hover:bg-primary/10"
+          >
+            <Github className="w-4 h-4" /> Frontend
+          </a>
+        )}
+         {project.repos?.admin && (
+          <a
+            href={project.repos.admin}
+            target="_blank"
+            className="inline-flex items-center gap-2 border px-4 py-2 rounded-lg hover:bg-primary/10"
+          >
+            <Github className="w-4 h-4" /> Admin
+          </a>
+        )}
+        {project.repos?.backend && (
+          <a
+            href={project.repos.backend}
+            target="_blank"
+            className="inline-flex items-center gap-2 border px-4 py-2 rounded-lg hover:bg-primary/10"
+          >
+            <Github className="w-4 h-4" /> Backend
+          </a>
+        )}
+        {project.repos?.ai && (
+          <a
+            href={project.repos.ai}
+            target="_blank"
+            className="inline-flex items-center gap-2 border px-4 py-2 rounded-lg hover:bg-primary/10"
+          >
+            <Github className="w-4 h-4" /> AI Service
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ================== Main Projects Component ==================
+export default function Projects() {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  return (
+    <div className="py-12 flex flex-col gap-12">
+      {/* Header */}
+      <motion.div
+        className="max-w-4xl"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7, delay: 0.2 }}
+      >
+        <div className="flex items-center gap-3 mb-6">
+          <FolderOpen className="w-8 h-8 text-primary" />
+          <h2 className="text-3xl font-bold gradient-text">Projects</h2>
+        </div>
+        <p className="text-xl text-muted-foreground">
+          A showcase of my expertise in full-stack and AI development through real-world projects that combine technical depth, modern architecture, and practical problem-solving.
+        </p>
+      </motion.div>
+
+      {/* Projects List */}
+      <div className="grid md:grid-cols-2 gap-8">
+        {projects.map((project, i) => (
+          <motion.div
+            key={i}
+            className="bg-card/50 backdrop-blur-sm border rounded-lg overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition"
+            onClick={() => setSelectedProject(project)}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 + i * 0.2 }}
+          >
+            <Image
+              src={project.cover}
+              alt={project.title}
+              width={1200}
+              height={384}
+              className="h-48 w-full object-cover"
+              priority={i === 0}
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-bold mb-2 text-primary">{project.title}</h3>
+              <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{project.description}</p>
+              <div className="flex flex-wrap gap-2">
+                {project.tech.slice(0, 5).map((t, idx) => (
+                  <span key={idx} className="bg-accent px-2 py-1 text-xs rounded-full">
+                    {t}
+                  </span>
+                ))}
+                {project.tech.length > 5 && (
+                  <span className="bg-primary/10 text-primary px-2 py-1 text-xs rounded-full">
+                    +{project.tech.length - 5}
+                  </span>
                 )}
-                
-                {/* Tech Stack */}
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Code className="w-4 h-4 text-primary" />
-                    <span className="font-semibold text-sm text-primary">Công nghệ:</span>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech, i) => (
-                      <span key={i} className="bg-accent px-3 py-1 rounded-full text-xs font-medium hover:bg-primary/10 hover:text-primary transition-colors">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                
-                {/* Responsibilities */}
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <Users className="w-4 h-4 text-primary" />
-                    <span className="font-semibold text-sm text-primary">Trách nhiệm:</span>
-                  </div>
-                  <ul className="space-y-1">
-                    {project.responsibilities.map((resp, respIdx) => (
-                      <li key={respIdx} className="text-sm text-muted-foreground flex items-start gap-3">
-                        <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
-                        <span className="leading-relaxed">{resp}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                {/* Action Buttons */}
-                <div className="flex flex-wrap gap-3 pt-2">
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-4 py-2 rounded-lg font-semibold hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl"
-                    >
-                      <Eye className="w-4 h-4" />
-                      Xem demo
-                    </a>
-                  )}
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-primary font-semibold hover:underline border border-primary/20 px-4 py-2 rounded-lg hover:bg-primary/10 transition-all duration-200"
-                  >
-                    <Github className="w-4 h-4" />
-                    Xem code
-                  </a>
-                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
-      ))}
+          </motion.div>
+        ))}
+      </div>
 
-      {/* Projects Summary */}
-      <motion.div
-        className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl p-6 border border-primary/20 text-center"
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.4 }}
-        viewport={{ once: true }}
+      {/* Modal */}
+      <Modal
+        open={selectedProject !== null}
+        onClose={() => setSelectedProject(null)}
+        contentClassName="p-6"
       >
-        <h3 className="text-xl font-bold text-primary mb-3">Tổng quan dự án</h3>
-        <p className="text-muted-foreground mb-4">
-          Các dự án cá nhân và nổi bật thể hiện khả năng phát triển toàn diện từ Frontend đến Backend, 
-          với focus vào trải nghiệm người dùng và hiệu suất ứng dụng.
-        </p>
-        <div className="flex flex-wrap justify-center gap-6">
-          <div className="text-center">
-            <div className="text-2xl font-bold text-primary">2</div>
-            <div className="text-sm text-muted-foreground">Dự án chính</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-primary">Fullstack</div>
-            <div className="text-sm text-muted-foreground">Frontend & Backend</div>
-          </div>
-          <div className="text-center">
-            <div className="text-2xl font-bold text-primary">Modern</div>
-            <div className="text-sm text-muted-foreground">Công nghệ hiện đại</div>
-          </div>
-        </div>
-      </motion.div>
-    </motion.div>
+        {selectedProject && <ProjectDetailContent project={selectedProject} />}
+      </Modal>
+    </div>
   );
 }

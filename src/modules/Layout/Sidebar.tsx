@@ -32,6 +32,7 @@ export default function Sidebar({
 
   const navItems = [
     { id: "home", label: t("nav.home"), icon: Home },
+    { id: "achievements", label: t("nav.achievements"), icon: Trophy },
     { id: "about", label: t("nav.about"), icon: User },
     { id: "experience", label: t("nav.experience"), icon: BarChart3 },
     { id: "projects", label: t("nav.projects"), icon: FolderOpen },
@@ -127,7 +128,7 @@ export default function Sidebar({
               className={`w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 cursor-pointer group ${
                 activeTab === item.id
                   ? "bg-accent text-foreground"
-                  : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                  : "text-muted-foreground hover:text-primary hover:bg-accent/50"
               }`}
             >
               <div className="flex items-center gap-3">
@@ -234,7 +235,7 @@ export default function Sidebar({
                     className={`w-full flex items-center justify-between p-3 rounded-lg transition-all duration-200 cursor-pointer group ${
                       activeTab === item.id
                         ? "bg-accent text-foreground"
-                        : "text-muted-foreground hover:text-foreground hover:bg-accent/50"
+                        : "text-muted-foreground hover:text-primary hover:bg-accent/50"
                     }`}
                   >
                     <div className="flex items-center gap-3">
