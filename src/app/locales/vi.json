@@ -96,6 +96,54 @@
       "downloadPortfolio": "Tải Portfolio",
       "downloadResume": "Tải CV"
     },
+    "careerData": {
+      "physcode": {
+        "company": "Physcode",
+        "position": "Fullstack Developer",
+        "period": "Tháng 3/2025 – Hiện tại",
+        "location": "Hà Nội, Việt Nam",
+        "type": "Toàn thời gian",
+        "mode": "Tại văn phòng",
+        "responsibilities": [
+          "Phát triển frontend với React.js, Next.js và TypeScript",
+          "Xây dựng backend APIs với NestJS và Express",
+          "Thiết kế và quản lý cơ sở dữ liệu MySQL, MongoDB, Redis",
+          "Tối ưu hóa hiệu suất và trải nghiệm người dùng",
+          "Tham gia quy trình Agile/Scrum trong phát triển sản phẩm",
+          "Thực hiện code review và mentoring cho thành viên mới",
+          "Viết tài liệu kỹ thuật để hỗ trợ bảo trì và mở rộng hệ thống"
+        ]
+      },
+      "acd": {
+        "company": "ACD Technology",
+        "position": "Fullstack Developer",
+        "period": "Tháng 7/2023 – Tháng 2/2025",
+        "location": "Hà Nội, Việt Nam",
+        "type": "Toàn thời gian",
+        "mode": "Tại văn phòng",
+        "responsibilities": [
+          "Phát triển giao diện người dùng responsive với Next.js",
+          "Xây dựng và duy trì RESTful APIs",
+          "Tích hợp dịch vụ bên thứ ba và hệ thống thanh toán",
+          "Triển khai & vận hành ứng dụng trên VPS",
+          "Thiết lập và tối ưu CI/CD pipelines với GitHub Actions, Docker, Jenkins",
+          "Phối hợp với nhóm QA và UI/UX để đảm bảo chất lượng sản phẩm"
+        ]
+      }
+    },
+    "educationData": {
+      "school": "Trường Đại học Mỏ – Địa chất",
+      "degree": "Ngành Công nghệ Thông tin, chuyên ngành Khoa học Máy tính",
+      "period": "09/2021 - 02/2024",
+      "location": "Hà Nội, Việt Nam",
+      "achievements": [
+        "Hoàn thành chương trình 4.5 năm trong 2.5 năm",
+        "Bắt đầu đi làm từ năm thứ 3 đại học",
+        "Đạt học bổng năm 3 với GPA 3.8/4.0",
+        "Thành thạo các công nghệ web hiện đại và áp dụng thực tế",
+        "Có khả năng học hỏi nhanh và thích ứng với môi trường làm việc"
+      ]
+    },
     "contact": {
       "title": "Liên hệ",
       "subtitle": "Tôi luôn sẵn sàng thảo luận về các cơ hội mới, dự án thú vị, hoặc chỉ đơn giản là trò chuyện về công nghệ. Hãy kết nối và bắt đầu cuộc trò chuyện!",

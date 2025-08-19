@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Download, ChevronDown, ChevronUp, Calendar, MapPin, GraduationCap, Briefcase } from "lucide-react";
+import { Download, ChevronDown, Calendar, MapPin, GraduationCap, Briefcase } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "../../app/contexts/LanguageContext";
 
@@ -12,52 +12,35 @@ export default function About() {
   const careerJourney = [
     {
       id: 1,
-      company: "Physcode",
-      position: "Fullstack Developer",
-      period: "03/2025 - Hiện tại",
-      location: "Hà Nội, Việt Nam",
-      type: "Full-time",
-      mode: "Onsite",
-      responsibilities: [
-        "Phát triển frontend với React.js, Next.js và TypeScript",
-        "Xây dựng backend API với Node.js và Express",
-        "Thiết kế và quản lý cơ sở dữ liệu PostgreSQL",
-        "Tối ưu hóa hiệu suất và trải nghiệm người dùng",
-        "Làm việc trong môi trường Agile/Scrum",
-        "Code review và mentoring junior developers"
-      ]
+      key: 'physcode',
+      company: t('sections.careerData.physcode.company'),
+      position: t('sections.careerData.physcode.position'),
+      period: t('sections.careerData.physcode.period'),
+      location: t('sections.careerData.physcode.location'),
+      type: t('sections.careerData.physcode.type'),
+      mode: t('sections.careerData.physcode.mode'),
+      responsibilities: t('sections.careerData.physcode.responsibilities')
     },
     {
       id: 2,
-      company: "ACD TECHNOLOGY",
-      position: "Full Stack Developer",
-      period: "07/2023 - 02/2025",
-      location: "Hà Nội, Việt Nam",
-      type: "Full-time",
-      mode: "Onsite",
-      responsibilities: [
-        "Phát triển giao diện người dùng responsive với React.js",
-        "Xây dựng RESTful APIs và GraphQL endpoints",
-        "Tích hợp các dịch vụ bên thứ ba và payment gateways",
-        "Thực hiện unit testing và integration testing",
-        "Deploy và maintain ứng dụng trên cloud platforms",
-        "Collaborate với team cross-functional để deliver features"
-      ]
+      key: 'acd',
+      company: t('sections.careerData.acd.company'),
+      position: t('sections.careerData.acd.position'),
+      period: t('sections.careerData.acd.period'),
+      location: t('sections.careerData.acd.location'),
+      type: t('sections.careerData.acd.type'),
+      mode: t('sections.careerData.acd.mode'),
+      responsibilities: t('sections.careerData.acd.responsibilities')
     }
   ];
+  
 
   const education = {
-    school: "Trường Đại học Mỏ – Địa chất",
-    degree: "Ngành Công nghệ Thông tin, chuyên ngành Khoa học Máy tính",
-    period: "09/2021 - 02/2024",
-    location: "Hà Nội, Việt Nam",
-    achievements: [
-      "Hoàn thành chương trình 4.5 năm trong 2.5 năm (tăng tốc 44%)",
-      "Bắt đầu đi làm từ năm thứ 2 đại học",
-      "Đạt học bổng năm 3 với GPA 3.8/4.0",
-      "Thành thạo các công nghệ web hiện đại và áp dụng thực tế",
-      "Có khả năng học hỏi nhanh và thích ứng với môi trường làm việc"
-    ]
+    school: t('sections.educationData.school'),
+    degree: t('sections.educationData.degree'),
+    period: t('sections.educationData.period'),
+    location: t('sections.educationData.location'),
+    achievements: t('sections.educationData.achievements')
   };
 
   return (
@@ -80,33 +63,77 @@ export default function About() {
           <h2 className="text-3xl font-bold gradient-text">{t('sections.about.title')}</h2>
         </motion.div>
         
-        <motion.div 
-          className="space-y-6"
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.7, delay: 0.6 }}
-        >
-          <p className="text-xl leading-relaxed text-muted-foreground">
-            {t('sections.about.content.intro')}
-          </p>
-          <p className="text-xl leading-relaxed text-muted-foreground">
-            {t('sections.about.content.experience')}
-          </p>
-          <p className="text-xl leading-relaxed text-muted-foreground">
-            {t('sections.about.content.workStyle')}
-          </p>
-          <p className="text-xl leading-relaxed text-muted-foreground">
-            {t('sections.about.content.future')}
-          </p>
+        <div className="space-y-6">
+          {[
+            t('sections.about.content.intro'),
+            t('sections.about.content.experience'),
+            t('sections.about.content.workStyle'),
+            t('sections.about.content.future')
+          ].map((content, index) => (
+            <motion.p 
+              key={index}
+              className="text-xl leading-relaxed text-muted-foreground"
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: 0.6 + index * 0.2,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
+              whileInView={{ 
+                y: 0, 
+                opacity: 1 
+              }}
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              {content}
+            </motion.p>
+          ))}
           
-          <div className="pt-4">
-            <p className="text-sm text-muted-foreground">{t('sections.about.content.signature')}</p>
-            <p className="text-primary font-semibold text-lg">dũng</p>
-          </div>
-        </motion.div>
+          <motion.div 
+            className="pt-4"
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 1.4, ease: "easeOut" }}
+          >
+            <motion.p 
+              className="text-sm text-muted-foreground"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 1.6 }}
+            >
+              {t('sections.about.content.signature')}
+            </motion.p>
+            <motion.p 
+              className="text-primary font-semibold text-lg"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ 
+                duration: 0.5, 
+                delay: 1.8,
+                ease: "backOut"
+              }}
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.2 }
+              }}
+            >
+              dũng
+            </motion.p>
+          </motion.div>
+        </div>
       </motion.div>
 
-      <div className="border w-full" />
+      <motion.div 
+        className="border w-full"
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ 
+          duration: 0.8, 
+          delay: 2.0,
+          ease: "easeInOut"
+        }}
+      />
 
       {/* Career Section */}
       <motion.div
@@ -186,17 +213,25 @@ export default function About() {
 
                       {/* Responsibilities Toggle */}
                       <div className="pt-2">
-                        <button
+                        <motion.button
                           onClick={() => setExpandedJob(expandedJob === job.id ? null : job.id)}
-                          className="flex items-center gap-2 text-primary text-sm font-medium hover:text-primary/80 transition-colors"
+                          className="flex items-center gap-2 text-primary text-sm font-medium hover:text-primary/80 transition-colors group"
+                          whileHover={{ scale: 1.02 }}
+                          whileTap={{ scale: 0.98 }}
                         >
-                          {expandedJob === job.id ? (
-                            <ChevronUp className="w-4 h-4" />
-                          ) : (
-                            <ChevronDown className="w-4 h-4" />
-                          )}
+                          <motion.div
+                            animate={{ 
+                              rotate: expandedJob === job.id ? 180 : 0 
+                            }}
+                            transition={{ 
+                              duration: 0.3,
+                              ease: [0.25, 0.46, 0.45, 0.94]
+                            }}
+                          >
+                            <ChevronDown className="w-4 h-4 group-hover:text-primary/80" />
+                          </motion.div>
                           {expandedJob === job.id ? t('sections.career.hideResponsibilities') : t('sections.career.showResponsibilities')}
-                        </button>
+                        </motion.button>
                         
                         <motion.div
                           initial={false}
@@ -204,15 +239,42 @@ export default function About() {
                             height: expandedJob === job.id ? "auto" : 0,
                             opacity: expandedJob === job.id ? 1 : 0
                           }}
-                          transition={{ duration: 0.3 }}
+                          transition={{ 
+                            duration: 0.4,
+                            ease: [0.25, 0.46, 0.45, 0.94]
+                          }}
                           className="overflow-hidden"
                         >
                           <ul className="space-y-2 pt-3 pl-4 text-sm text-muted-foreground">
-                            {job.responsibilities.map((responsibility, respIndex) => (
-                              <li key={respIndex} className="flex items-start gap-2">
-                                <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                            {(Array.isArray(job.responsibilities) ? job.responsibilities : []).map((responsibility: string, respIndex: number) => (
+                              <motion.li 
+                                key={respIndex} 
+                                className="flex items-start gap-2"
+                                initial={{ opacity: 0, x: -10 }}
+                                animate={{ 
+                                  opacity: expandedJob === job.id ? 1 : 0,
+                                  x: expandedJob === job.id ? 0 : -10
+                                }}
+                                transition={{ 
+                                  duration: 0.3,
+                                  delay: expandedJob === job.id ? respIndex * 0.1 : 0,
+                                  ease: "easeOut"
+                                }}
+                              >
+                                <motion.div 
+                                  className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"
+                                  initial={{ scale: 0 }}
+                                  animate={{ 
+                                    scale: expandedJob === job.id ? 1 : 0 
+                                  }}
+                                  transition={{ 
+                                    duration: 0.2,
+                                    delay: expandedJob === job.id ? respIndex * 0.1 + 0.1 : 0,
+                                    ease: "backOut"
+                                  }}
+                                ></motion.div>
                                 {responsibility}
-                              </li>
+                              </motion.li>
                             ))}
                           </ul>
                         </motion.div>
@@ -226,7 +288,16 @@ export default function About() {
         </motion.div>
       </motion.div>
 
-      <div className="border w-full" />
+      <motion.div 
+        className="border w-full"
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ 
+          duration: 0.8, 
+          delay: 2.2,
+          ease: "easeInOut"
+        }}
+      />
 
       {/* Education Section */}
       <motion.div
@@ -297,13 +368,32 @@ export default function About() {
 
                   {/* Achievements */}
                   <div className="pt-2">
-                    <h4 className="font-semibold text-lg text-primary">Achievements:</h4>
+                    <h4 className="font-semibold text-lg text-primary">{t('sections.achievements.title')}:</h4>
                     <ul className="space-y-2 ml-3 text-sm text-muted-foreground">
-                      {education.achievements.map((achievement, index) => (
-                        <li key={index} className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                      {(Array.isArray(education.achievements) ? education.achievements : []).map((achievement: string, index: number) => (
+                        <motion.li 
+                          key={index} 
+                          className="flex items-start gap-2"
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ 
+                            duration: 0.5, 
+                            delay: 2.4 + index * 0.1,
+                            ease: "easeOut"
+                          }}
+                        >
+                          <motion.div 
+                            className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ 
+                              duration: 0.3, 
+                              delay: 2.5 + index * 0.1,
+                              ease: "backOut"
+                            }}
+                          ></motion.div>
                           {achievement}
-                        </li>
+                        </motion.li>
                       ))}
                     </ul>
                   </div>
@@ -316,18 +406,64 @@ export default function About() {
         {/* Download Buttons */}
         <motion.div
           className="flex flex-wrap justify-center gap-4"
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.7, delay: 2.4 }}
+          transition={{ duration: 0.6, delay: 2.4, ease: "easeOut" }}
         >
-          <button className="px-6 py-3 bg-primary text-primary-foreground hover:text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200 flex items-center gap-2">
-            <Download className="w-4 h-4" />
+          <motion.button 
+            className="px-6 py-3 bg-primary text-primary-foreground hover:text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 flex items-center gap-2 group relative overflow-hidden"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              duration: 0.5, 
+              delay: 2.6,
+              ease: "backOut"
+            }}
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 8px 25px rgba(0, 0, 0, 0.15)"
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"
+            />
+            <motion.div
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Download className="w-4 h-4" />
+            </motion.div>
             {t('sections.actions.downloadPortfolio')}
-          </button>
-          <button className="px-6 py-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors duration-200 flex items-center gap-2">
-            <Download className="w-4 h-4" />
-            {t('sections.actions.downloadResume')}
-          </button>
+          </motion.button>
+          
+          <motion.button 
+            className="px-6 py-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-2 group relative overflow-hidden"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ 
+              duration: 0.5, 
+              delay: 2.8,
+              ease: "backOut"
+            }}
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 8px 25px rgba(0, 0, 0, 0.15)"
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"
+            />
+            <motion.div
+              className="relative z-10"
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Download className="w-4 h-4" />
+            </motion.div>
+            <span className="relative z-10">{t('sections.actions.downloadResume')}</span>
+          </motion.button>
         </motion.div>
       </motion.div>
     </div>

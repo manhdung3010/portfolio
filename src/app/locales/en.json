@@ -95,6 +95,54 @@
       "downloadPortfolio": "Download Portfolio",
       "downloadResume": "Download Resume"
     },
+    "careerData": {
+      "physcode": {
+        "company": "Physcode",
+        "position": "Fullstack Developer",
+        "period": "Mar 2025 – Present",
+        "location": "Hanoi, Vietnam",
+        "type": "Full-time",
+        "mode": "Onsite",
+        "responsibilities": [
+          "Develop frontend with React.js, Next.js and TypeScript",
+          "Build backend APIs with NestJS and Express",
+          "Design and manage MySQL, MongoDB, Redis databases",
+          "Optimize performance and user experience",
+          "Participate in Agile/Scrum development processes",
+          "Perform code reviews and mentor new team members",
+          "Write technical documentation to support system maintenance and expansion"
+        ]
+      },
+      "acd": {
+        "company": "ACD Technology",
+        "position": "Fullstack Developer",
+        "period": "Jul 2023 – Feb 2025",
+        "location": "Hanoi, Vietnam",
+        "type": "Full-time",
+        "mode": "Onsite",
+        "responsibilities": [
+          "Develop responsive user interfaces with Next.js",
+          "Build and maintain RESTful APIs",
+          "Integrate third-party services and payment systems",
+          "Deploy & operate applications on VPS",
+          "Set up and optimize CI/CD pipelines with GitHub Actions, Docker, Jenkins",
+          "Collaborate with QA and UI/UX teams to ensure product quality"
+        ]
+      }
+    },
+    "educationData": {
+      "school": "University of Mining and Geology",
+      "degree": "Information Technology, Computer Science specialization",
+      "period": "09/2021 - 02/2024",
+      "location": "Hanoi, Vietnam",
+      "achievements": [
+        "Completed 4.5-year program in 2.5 years",
+        "Started working from 3rd year of university",
+        "Achieved 3rd year scholarship with GPA 3.8/4.0",
+        "Mastered modern web technologies and applied them in practice",
+        "Capable of fast learning and adapting to work environments"
+      ]
+    },
     "contact": {
       "title": "Contact",
       "subtitle": "I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology. Let's connect and start a conversation!",
