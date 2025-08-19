@@ -1,11 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, Mail, Github, Linkedin, Download, ChevronDown, ChevronUp, Calendar, MapPin, GraduationCap, Briefcase } from "lucide-react";
+import { Download, ChevronDown, ChevronUp, Calendar, MapPin, GraduationCap, Briefcase } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "../../app/contexts/LanguageContext";
 
 export default function About() {
   const [expandedJob, setExpandedJob] = useState<number | null>(null);
+  const { t } = useLanguage();
 
   const careerJourney = [
     {
@@ -75,7 +77,7 @@ export default function About() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <Briefcase className="w-8 h-8 text-primary" />
-          <h2 className="text-3xl font-bold gradient-text">About</h2>
+          <h2 className="text-3xl font-bold gradient-text">{t('sections.about.title')}</h2>
         </motion.div>
         
         <motion.div 
@@ -85,23 +87,20 @@ export default function About() {
           transition={{ duration: 0.7, delay: 0.6 }}
         >
           <p className="text-xl leading-relaxed text-muted-foreground">
-            Tôi là <strong className="text-primary">Nguyễn Mạnh Dũng</strong>, một <strong className="text-primary">Fullstack Developer</strong> với hơn 2 năm kinh nghiệm 
-            trong việc phát triển các ứng dụng web hiện đại. Tôi đã tốt nghiệp ngành Công nghệ Thông tin tại 
-            Đại học Mỏ - Địa chất và hiện đang làm việc tại Physcode với vai trò Fullstack Developer.
+            {t('sections.about.content.intro')}
           </p>
           <p className="text-xl leading-relaxed text-muted-foreground">
-            Phong cách làm việc của tôi tập trung vào việc tạo ra những giải pháp <strong className="text-primary">thân thiện với người dùng</strong> 
-            và <strong className="text-primary">hiệu suất cao</strong>. Tôi tin vào việc viết code rõ ràng, hiệu quả và luôn sẵn sàng học hỏi 
-            những công nghệ mới để giải quyết các vấn đề phức tạp một cách sáng tạo.
+            {t('sections.about.content.experience')}
           </p>
           <p className="text-xl leading-relaxed text-muted-foreground">
-            Tôi đánh giá cao tầm quan trọng của giao tiếp và sự đồng bộ trong nhóm. Kinh nghiệm của tôi đã 
-            rèn luyện cho tôi những phẩm chất kỹ thuật, phân tích và lãnh đạo. Tôi rất hào hứng được học hỏi 
-            từ những người khác và đóng góp vào các dự án có tác động.
+            {t('sections.about.content.workStyle')}
+          </p>
+          <p className="text-xl leading-relaxed text-muted-foreground">
+            {t('sections.about.content.future')}
           </p>
           
           <div className="pt-4">
-            <p className="text-sm text-muted-foreground">Best regards,</p>
+            <p className="text-sm text-muted-foreground">{t('sections.about.content.signature')}</p>
             <p className="text-primary font-semibold text-lg">dũng</p>
           </div>
         </motion.div>
@@ -125,9 +124,9 @@ export default function About() {
             transition={{ duration: 0.5, delay: 1 }}
           >
             <Briefcase className="w-8 h-8 text-primary" />
-            <h2 className="text-3xl font-bold gradient-text">Career</h2>
+            <h2 className="text-3xl font-bold gradient-text">{t('sections.career.title')}</h2>
           </motion.div>
-          <p className="text-muted-foreground">My professional journey.</p>
+          <p className="text-muted-foreground">{t('sections.career.subtitle')}</p>
         </div>
 
         {/* Career Cards */}
@@ -196,7 +195,7 @@ export default function About() {
                           ) : (
                             <ChevronDown className="w-4 h-4" />
                           )}
-                          {expandedJob === job.id ? "Hide responsibilities" : "Show responsibilities"}
+                          {expandedJob === job.id ? t('sections.career.hideResponsibilities') : t('sections.career.showResponsibilities')}
                         </button>
                         
                         <motion.div
@@ -245,9 +244,9 @@ export default function About() {
             transition={{ duration: 0.5, delay: 1.8 }}
           >
             <GraduationCap className="w-8 h-8 text-primary" />
-            <h2 className="text-3xl font-bold gradient-text">Education</h2>
+            <h2 className="text-3xl font-bold gradient-text">{t('sections.education.title')}</h2>
           </motion.div>
-          <p className="text-muted-foreground">My educational journey.</p>
+          <p className="text-muted-foreground">{t('sections.education.subtitle')}</p>
         </div>
 
         {/* Education Card */}
@@ -323,11 +322,11 @@ export default function About() {
         >
           <button className="px-6 py-3 bg-primary text-primary-foreground hover:text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200 flex items-center gap-2">
             <Download className="w-4 h-4" />
-            Download Portfolio
+            {t('sections.actions.downloadPortfolio')}
           </button>
           <button className="px-6 py-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors duration-200 flex items-center gap-2">
             <Download className="w-4 h-4" />
-            Download Resume
+            {t('sections.actions.downloadResume')}
           </button>
         </motion.div>
       </motion.div>

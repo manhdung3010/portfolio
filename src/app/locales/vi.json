@@ -15,7 +15,8 @@
     "location": "Tại Hà Nội, Việt Nam 🇻🇳",
     "available": "Sẵn sàng làm việc",
     "title": "Lập trình viên Fullstack",
-    "description": "Tôi là một lập trình viên Fullstack có kinh nghiệm và đam mê trong việc xây dựng các giải pháp số hiệu quả và có thể mở rộng. Ở frontend, tôi làm việc với React, Next.js, TypeScript và Tailwind CSS để tạo ra các giao diện người dùng responsive và dễ tiếp cận. Ở backend, tôi phát triển các dịch vụ mạnh mẽ sử dụng Node.js, và cho mobile, tôi xây dựng các ứng dụng đa nền tảng với React Native. Tôi là một kỹ sư có tinh thần hợp tác và chú ý đến chi tiết, cam kết cung cấp các ứng dụng có cấu trúc tốt và hiệu suất cao trên nhiều nền tảng."
+    "description": "Tôi là một lập trình viên Fullstack đam mê sáng tạo và xây dựng các sản phẩm số có giá trị. Tôi luôn chú trọng đến trải nghiệm người dùng, tính hiệu quả và khả năng mở rộng trong từng giải pháp. Với tinh thần hợp tác và tư duy hệ thống, tôi không chỉ tập trung vào code mà còn quan tâm đến kiến trúc, quy trình và chất lượng tổng thể của sản phẩm. Mục tiêu của tôi là trở thành người dẫn dắt đội ngũ phát triển, tạo ra những ứng dụng hiện đại, bền vững và mang lại tác động thực sự."
+
   },
   "actions": {
     "smartTalk": "Trò chuyện",
@@ -28,7 +29,14 @@
     "about": {
       "title": "Về tôi",
       "subtitle": "Tìm hiểu thêm về tôi",
-      "description": "Tôi là một lập trình viên Fullstack có đam mê với kinh nghiệm trong việc xây dựng các ứng dụng web và mobile hiện đại."
+      "description": "Tôi là một lập trình viên Fullstack có đam mê với kinh nghiệm trong việc xây dựng các ứng dụng web và mobile hiện đại.",
+      "content": {
+        "intro": "Tôi là Nguyễn Mạnh Dũng, một lập trình viên Fullstack với hơn 2 năm kinh nghiệm trong việc xây dựng các sản phẩm số hiện đại. Xuất phát điểm từ niềm đam mê công nghệ, tôi luôn tìm kiếm cách biến ý tưởng thành những giải pháp thực tế, hữu ích và có khả năng mở rộng.",
+        "experience": "Trong công việc, tôi từng đảm nhận nhiều vai trò khác nhau, từ phát triển toàn diện ứng dụng đến quản lý nhóm nhỏ. Tôi tham gia vào việc định hình ý tưởng, thiết kế luồng hoạt động, xây dựng kiến trúc hệ thống, cũng như giao việc, định hướng và review code cho các thành viên khác. Những trải nghiệm đó không chỉ giúp tôi nâng cao kỹ năng kỹ thuật mà còn rèn luyện khả năng lãnh đạo, giao tiếp và tổ chức công việc hiệu quả.",
+        "workStyle": "Phong cách làm việc của tôi tập trung vào sự rõ ràng, hiệu quả và chú trọng trải nghiệm người dùng. Tôi coi trọng tính hợp tác trong nhóm, luôn học hỏi để tìm ra giải pháp sáng tạo cho những vấn đề phức tạp.",
+        "future": "Trong tương lai, tôi mong muốn phát triển sự nghiệp theo hướng Team Lead, dẫn dắt đội ngũ phát triển để tạo ra những sản phẩm chất lượng, bền vững và mang lại giá trị lâu dài.",
+        "signature": "Trân trọng,"
+      }
     },
     "skills": {
       "title": "Kỹ năng & Công nghệ",
@@ -54,7 +62,7 @@
     },
     "achievements": {
       "title": "Thành tựu & Chứng chỉ",
-      "subtitle": "Một số thành tựu và chứng chỉ tiêu biểu mình đạt được trong quá trình học và thực hành tại F8 (Fullstack.edu.vn), thể hiện tinh thần học hỏi và phát triển liên tục.",
+      "subtitle": "Các chứng chỉ và thành tựu tôi đạt được trong hành trình học tập và phát triển kỹ năng lập trình, thể hiện cam kết học hỏi và hoàn thiện bản thân liên tục.",
       "viewCourse": "Xem khóa học",
       "clickToView": "Nhấp để xem",
       "enlarge": "Xem lớn",
@@ -78,14 +86,63 @@
       "university": "Đại học",
       "graduation": "Tốt nghiệp"
     },
+    "career": {
+      "title": "Kinh nghiệm làm việc",
+      "subtitle": "Hành trình chuyên nghiệp của tôi",
+      "showResponsibilities": "Xem trách nhiệm",
+      "hideResponsibilities": "Ẩn trách nhiệm"
+    },
+    "actions": {
+      "downloadPortfolio": "Tải Portfolio",
+      "downloadResume": "Tải CV"
+    },
     "contact": {
       "title": "Liên hệ",
-      "subtitle": "Hãy làm việc cùng nhau",
-      "name": "Tên",
-      "email": "Email",
-      "message": "Tin nhắn",
-      "send": "Gửi tin nhắn",
-      "contactInfo": "Thông tin liên hệ"
+      "subtitle": "Tôi luôn sẵn sàng thảo luận về các cơ hội mới, dự án thú vị, hoặc chỉ đơn giản là trò chuyện về công nghệ. Hãy kết nối và bắt đầu cuộc trò chuyện!",
+      "getInTouch": {
+        "title": "Liên hệ với tôi",
+        "subtitle": "Chọn cách liên hệ phù hợp với bạn"
+      },
+      "sendMessage": {
+        "title": "Gửi tin nhắn",
+        "subtitle": "Hãy để lại lời nhắn và tôi sẽ phản hồi bạn"
+      },
+      "contactInfo": {
+        "phone": {
+          "label": "Điện thoại",
+          "description": "Gọi điện trực tiếp"
+        },
+        "email": {
+          "label": "Email",
+          "description": "Gửi email"
+        },
+        "github": {
+          "label": "GitHub",
+          "description": "Xem dự án"
+        },
+        "linkedin": {
+          "label": "LinkedIn",
+          "description": "Kết nối chuyên nghiệp"
+        }
+      },
+      "form": {
+        "name": "Tên",
+        "namePlaceholder": "Tên của bạn",
+        "email": "Email",
+        "emailPlaceholder": "email.cua.ban@example.com",
+        "subject": "Chủ đề",
+        "subjectPlaceholder": "Về vấn đề gì?",
+        "message": "Tin nhắn",
+        "messagePlaceholder": "Hãy kể cho tôi về dự án của bạn hoặc chỉ đơn giản chào hỏi!",
+        "required": "*",
+        "send": "Gửi tin nhắn",
+        "sending": "Đang gửi..."
+      },
+      "messages": {
+        "success": "Cảm ơn bạn! Tin nhắn đã được gửi thành công. Tôi sẽ phản hồi sớm nhất có thể.",
+        "error": "Có lỗi xảy ra khi gửi tin nhắn. Vui lòng thử lại sau hoặc liên hệ trực tiếp qua email.",
+        "configError": "Thiếu cấu hình EmailJS. Vui lòng kiểm tra tệp .env.local của bạn."
+      }
     }
   },
   "common": {

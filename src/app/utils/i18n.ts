@@ -33,6 +33,13 @@ export interface Translations {
       title: string;
       subtitle: string;
       description: string;
+      content: {
+        intro: string;
+        experience: string;
+        workStyle: string;
+        future: string;
+        signature: string;
+      };
     };
     skills: {
       title: string;
@@ -63,14 +70,63 @@ export interface Translations {
       university: string;
       graduation: string;
     };
+    career: {
+      title: string;
+      subtitle: string;
+      showResponsibilities: string;
+      hideResponsibilities: string;
+    };
+    actions: {
+      downloadPortfolio: string;
+      downloadResume: string;
+    };
     contact: {
       title: string;
       subtitle: string;
-      name: string;
-      email: string;
-      message: string;
-      send: string;
-      contactInfo: string;
+      getInTouch: {
+        title: string;
+        subtitle: string;
+      };
+      sendMessage: {
+        title: string;
+        subtitle: string;
+      };
+      contactInfo: {
+        phone: {
+          label: string;
+          description: string;
+        };
+        email: {
+          label: string;
+          description: string;
+        };
+        github: {
+          label: string;
+          description: string;
+        };
+        linkedin: {
+          label: string;
+          description: string;
+        };
+      };
+      form: {
+        name: string;
+        namePlaceholder: string;
+        email: string;
+        emailPlaceholder: string;
+        subject: string;
+        subjectPlaceholder: string;
+        message: string;
+        messagePlaceholder: string;
+        required: string;
+        send: string;
+        sending: string;
+      };
+      messages: {
+        success: string;
+        error: string;
+        configError: string;
+      };
     };
   };
   common: {

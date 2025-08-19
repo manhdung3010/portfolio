@@ -114,35 +114,36 @@ export default function HeroSection() {
           
           <div className="relative bg-card/50 backdrop-blur-sm ">
             <div 
-              className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-12"
+              className="grid grid-cols-3  sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-12"
               style={{ 
                 display: 'grid', 
                 gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
-                gap: '12px'
+                gap: '20px'
               }}
             >
               {stacksInArray.map(([name, { icon, background }], index) => (
                 <motion.div
-                  key={index}
-                  className="flex justify-center items-center p-2 min-h-[60px]"
-                  initial={{ opacity: 0, scale: 0.5, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 1.4 + index * 0.02,
-                    ease: "easeOut"
-                  }}
-                  whileHover={{ 
-                    scale: 1.1,
-                    transition: { duration: 0.2 }
-                  }}
-                >
-                  <GlassIcon
-                    name={name}
-                    icon={icon}
-                    background={background}
-                  />
-                </motion.div>
+                key={index}
+                className="flex justify-center items-center"
+                initial={{ opacity: 0, scale: 0.5, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 1.4 + index * 0.02,
+                  ease: "easeOut"
+                }}
+                whileHover={{ 
+                  scale: 1.1,
+                  transition: { duration: 0.2 }
+                }}
+              >
+                <GlassIcon
+                  name={name}
+                  icon={icon}
+                  background={background}
+                />
+              </motion.div>
+              
               ))}
             </div>
             

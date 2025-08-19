@@ -48,7 +48,7 @@ type Project = {
 const projects: Project[] = [
   {
     title: "WorldReader",
-    cover: "/images/project/worldreader/cover.png",
+    cover: "/projects/worldreader/cover.png",
     description:
       "WorldReader là một nền tảng thương mại điện tử sách toàn diện, tôi tự phát triển từ đầu với kiến trúc microservice gồm 3 phần: Frontend (Next.js + React), Backend (NestJS + MySQL), và AI Service (Flask + ML). Hệ thống tích hợp đầy đủ tính năng e-commerce hiện đại, kèm hệ thống gợi ý sách thông minh và chatbot AI.",
     role: "Full-stack & AI Developer (Solo Project)",
@@ -75,36 +75,36 @@ const projects: Project[] = [
       ai: "https://github.com/manhdung3010/WorldReader-AI",
     },
     demo: "https://worldreader-demo.vercel.app",
-    video: "https://youtu.be/demo-video-worldreader",
+    video: "/projects/worldreader/demo.mp4",
     screenshots: [
       {
         title: "Trang chủ",
-        url: "/images/project/worldreader/cover.png",
+        url: "/projects/worldreader/cover.png",
         desc: "Giao diện trang chủ hiển thị danh sách sách nổi bật, bộ lọc, tìm kiếm.",
       },
       {
         title: "Chi tiết sản phẩm",
-        url: "/images/project/worldreader/product.png",
+        url: "/projects/worldreader/product.png",
         desc: "Trang chi tiết sách với thông tin, đánh giá, gợi ý sách liên quan.",
       },
       {
         title: "Giỏ hàng & Thanh toán",
-        url: "/images/project/worldreader/cart.png",
+        url: "/projects/worldreader/cart.png",
         desc: "Giỏ hàng với xử lý giảm giá, voucher, nhiều phương thức thanh toán.",
       },
       {
         title: "Admin Dashboard",
-        url: "/images/project/worldreader/admin.png",
+        url: "/projects/worldreader/admin.png",
         desc: "Trang quản trị quản lý người dùng, đơn hàng, sản phẩm, flash sale.",
       },
       {
         title: "AI Recommendation",
-        url: "/images/project/worldreader/ai.png",
+        url: "/projects/worldreader/ai.png",
         desc: "Sơ đồ kiến trúc tổng thể phân lớp với module AI Service",
       },
       {
         title: "Chatbot AI",
-        url: "/images/project/worldreader/chatbot.png",
+        url: "/projects/worldreader/chatbot.png",
         desc: "Chatbot AI hỗ trợ tư vấn và tìm kiếm sách thông minh.",
       },
     ],
@@ -147,29 +147,33 @@ const projects: Project[] = [
 ];
 
 // ================== Modal Content Component ==================
-function ProjectDetailContent({ project }: { project: Project }) {
+function ProjectDetailContent({ projects }: { projects: Project }) {
   return (
     <div>
-      <h2 className="text-3xl font-bold text-primary mb-2">{project.title}</h2>
-      <p className="text-muted-foreground mb-6">{project.description}</p>
+      <h2 className="text-3xl font-bold text-primary mb-2">{projects.title}</h2>
+      <p className="text-muted-foreground mb-6">{projects.description}</p>
 
       {/* Video Demo */}
-      {project.video && (
+      {projects.video && (
         <div className="mb-6">
-          <iframe
+          <video
             width="100%"
             height="400"
-            src={project.video.replace("watch?v=", "embed/")}
-            title="Demo Video"
+            controls
+            autoPlay
+            muted
+            loop
             className="rounded-lg"
-            allowFullScreen
-          />
+          >
+            <source src={projects.video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
       )}
 
       {/* Screenshots */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-        {project.screenshots.map((s, i) => (
+        {projects.screenshots.map((s, i) => (
           <div key={i} className="space-y-2">
             <Image
               src={s.url}
@@ -189,7 +193,7 @@ function ProjectDetailContent({ project }: { project: Project }) {
       <div className="mb-8">
         <h3 className="text-xl font-bold text-primary mb-3">Key Features</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {(Object.entries(project.features) as Array<[string, string[]]>).map(
+          {(Object.entries(projects.features) as Array<[string, string[]]>).map(
             ([section, items], i) => (
               <div key={i}>
                 <h4 className="font-semibold mb-2 capitalize">{section}</h4>
@@ -208,7 +212,7 @@ function ProjectDetailContent({ project }: { project: Project }) {
       <div className="mb-8">
         <h3 className="text-xl font-bold text-primary mb-3">Responsibilities</h3>
         <ul className="space-y-2 text-sm text-muted-foreground list-disc pl-5">
-          {project.responsibilities.map((resp, idx) => (
+          {projects.responsibilities.map((resp, idx) => (
             <li key={idx}>{resp}</li>
           ))}
         </ul>
@@ -219,7 +223,7 @@ function ProjectDetailContent({ project }: { project: Project }) {
       <div className="mb-8">
         <h3 className="text-xl font-bold text-primary mb-3">Technologies</h3>
         <div className="flex flex-wrap gap-2">
-          {project.tech.map((t, i) => (
+          {projects.tech.map((t, i) => (
             <span
               key={i}
               className="bg-accent px-3 py-1 rounded-full text-xs font-medium hover:bg-primary/10 hover:text-primary transition-colors"
@@ -232,9 +236,9 @@ function ProjectDetailContent({ project }: { project: Project }) {
 
       {/* Repositories & Demo */}
       <div className="flex flex-wrap gap-3">
-        {project.demo && (
+        {projects.demo && (
           <a
-            href={project.demo}
+            href={projects.demo}
             target="_blank"
             className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90"
           >
@@ -242,36 +246,36 @@ function ProjectDetailContent({ project }: { project: Project }) {
             Live Demo
           </a>
         )}
-        {project.repos?.frontend && (
+        {projects.repos?.frontend && (
           <a
-            href={project.repos.frontend}
+            href={projects.repos.frontend}
             target="_blank"
             className="inline-flex items-center gap-2 border px-4 py-2 rounded-lg hover:bg-primary/10"
           >
             <Github className="w-4 h-4" /> Frontend
           </a>
         )}
-         {project.repos?.admin && (
+         {projects.repos?.admin && (
           <a
-            href={project.repos.admin}
+            href={projects.repos.admin}
             target="_blank"
             className="inline-flex items-center gap-2 border px-4 py-2 rounded-lg hover:bg-primary/10"
           >
             <Github className="w-4 h-4" /> Admin
           </a>
         )}
-        {project.repos?.backend && (
+        {projects.repos?.backend && (
           <a
-            href={project.repos.backend}
+            href={projects.repos.backend}
             target="_blank"
             className="inline-flex items-center gap-2 border px-4 py-2 rounded-lg hover:bg-primary/10"
           >
             <Github className="w-4 h-4" /> Backend
           </a>
         )}
-        {project.repos?.ai && (
+        {projects.repos?.ai && (
           <a
-            href={project.repos.ai}
+            href={projects.repos.ai}
             target="_blank"
             className="inline-flex items-center gap-2 border px-4 py-2 rounded-lg hover:bg-primary/10"
           >
@@ -307,35 +311,35 @@ export default function Projects() {
 
       {/* Projects List */}
       <div className="grid md:grid-cols-2 gap-8">
-        {projects.map((project, i) => (
+        {projects.map((projects, i) => (
           <motion.div
             key={i}
             className="bg-card/50 backdrop-blur-sm border rounded-lg overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition"
-            onClick={() => setSelectedProject(project)}
+            onClick={() => setSelectedProject(projects)}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 + i * 0.2 }}
           >
             <Image
-              src={project.cover}
-              alt={project.title}
+              src={projects.cover}
+              alt={projects.title}
               width={1200}
               height={384}
               className="h-48 w-full object-cover"
               priority={i === 0}
             />
             <div className="p-6">
-              <h3 className="text-xl font-bold mb-2 text-primary">{project.title}</h3>
-              <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{project.description}</p>
+              <h3 className="text-xl font-bold mb-2 text-primary">{projects.title}</h3>
+              <p className="text-sm text-muted-foreground mb-4 line-clamp-3">{projects.description}</p>
               <div className="flex flex-wrap gap-2">
-                {project.tech.slice(0, 5).map((t, idx) => (
+                {projects.tech.slice(0, 5).map((t, idx) => (
                   <span key={idx} className="bg-accent px-2 py-1 text-xs rounded-full">
                     {t}
                   </span>
                 ))}
-                {project.tech.length > 5 && (
+                {projects.tech.length > 5 && (
                   <span className="bg-primary/10 text-primary px-2 py-1 text-xs rounded-full">
-                    +{project.tech.length - 5}
+                    +{projects.tech.length - 5}
                   </span>
                 )}
               </div>
@@ -350,7 +354,7 @@ export default function Projects() {
         onClose={() => setSelectedProject(null)}
         contentClassName="p-6"
       >
-        {selectedProject && <ProjectDetailContent project={selectedProject} />}
+        {selectedProject && <ProjectDetailContent projects={selectedProject} />}
       </Modal>
     </div>
   );

@@ -15,7 +15,7 @@
     "location": "Based in Hanoi, Vietnam 🇻🇳",
     "available": "Available for work",
     "title": "Fullstack Developer",
-    "description": "Experienced and passionate Fullstack Developer specializing in building scalable and efficient digital solutions. On the frontend, I work with React, Next.js, TypeScript, and Tailwind CSS to craft responsive and accessible user interfaces. On the backend, I develop robust services using Node.js, and for mobile, I build cross-platform apps with React Native. I'm a collaborative and detail-oriented engineer committed to delivering well-structured, high-performance applications across platforms."
+    "description": "I am a Fullstack Developer passionate about crafting meaningful digital experiences. My focus goes beyond writing code — I care about user experience, scalability, and the overall quality of every product I build. With a collaborative mindset and a systems-thinking approach, I aim to contribute not only technically but also strategically. My vision is to grow as a leader, guiding teams to deliver modern, sustainable, and impactful applications."
   },
   "actions": {
     "smartTalk": "Smart Talk",
@@ -28,7 +28,14 @@
     "about": {
       "title": "About Me",
       "subtitle": "Get to know me better",
-      "description": "I am a passionate Fullstack Developer with experience in building modern web applications and mobile apps."
+      "description": "I am a passionate Fullstack Developer with experience in building modern web applications and mobile apps.",
+      "content": {
+        "intro": "I am Nguyễn Mạnh Dũng, a Fullstack Developer with over 2 years of experience in building modern digital products. Starting from my passion for technology, I always seek ways to turn ideas into practical, useful, and scalable solutions.",
+        "experience": "In my work, I have taken on various roles, from full-stack application development to managing small teams. I participate in shaping ideas, designing workflows, building system architecture, as well as delegating tasks, providing guidance, and reviewing code for other members. These experiences have not only helped me improve my technical skills but also developed my leadership, communication, and efficient work organization abilities.",
+        "workStyle": "My work style focuses on clarity, efficiency, and user experience. I value teamwork collaboration and continuously learn to find creative solutions to complex problems.",
+        "future": "In the future, I aspire to develop my career toward Team Lead, leading development teams to create high-quality, sustainable products that bring long-term value.",
+        "signature": "Best regards,"
+      }
     },
     "skills": {
       "title": "Skills & Technologies",
@@ -54,7 +61,7 @@
     },
     "achievements": {
       "title": "Achievements & Certificates",
-      "subtitle": "Some highlights and certificates earned during my learning and practice at F8 (Fullstack.edu.vn), reflecting continuous learning and growth.",
+      "subtitle": "Certificates and achievements earned throughout my programming learning journey, demonstrating my commitment to continuous learning and self-improvement.",
       "viewCourse": "View course",
       "clickToView": "Click to view",
       "enlarge": "View larger",
@@ -78,14 +85,63 @@
       "university": "University",
       "graduation": "Graduation"
     },
+    "career": {
+      "title": "Career",
+      "subtitle": "My professional journey",
+      "showResponsibilities": "Show responsibilities",
+      "hideResponsibilities": "Hide responsibilities"
+    },
+    "actions": {
+      "downloadPortfolio": "Download Portfolio",
+      "downloadResume": "Download Resume"
+    },
     "contact": {
-      "title": "Get In Touch",
-      "subtitle": "Let's work together",
-      "name": "Name",
-      "email": "Email",
-      "message": "Message",
-      "send": "Send Message",
-      "contactInfo": "Contact Information"
+      "title": "Contact",
+      "subtitle": "I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology. Let's connect and start a conversation!",
+      "getInTouch": {
+        "title": "Get In Touch",
+        "subtitle": "Choose your preferred way to connect"
+      },
+      "sendMessage": {
+        "title": "Send Message",
+        "subtitle": "Drop me a line and I'll get back to you"
+      },
+      "contactInfo": {
+        "phone": {
+          "label": "Phone",
+          "description": "Call directly"
+        },
+        "email": {
+          "label": "Email",
+          "description": "Send email"
+        },
+        "github": {
+          "label": "GitHub",
+          "description": "View projects"
+        },
+        "linkedin": {
+          "label": "LinkedIn",
+          "description": "Professional connection"
+        }
+      },
+      "form": {
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "emailPlaceholder": "your.email@example.com",
+        "subject": "Subject",
+        "subjectPlaceholder": "What's this about?",
+        "message": "Message",
+        "messagePlaceholder": "Tell me about your project or just say hello!",
+        "required": "*",
+        "send": "Send Message",
+        "sending": "Sending..."
+      },
+      "messages": {
+        "success": "Thank you! Your message has been sent successfully. I'll respond as soon as possible.",
+        "error": "An error occurred while sending the message. Please try again later or contact me directly via email.",
+        "configError": "EmailJS configuration missing. Please check your .env.local file."
+      }
     }
   },
   "common": {
