@@ -1,10 +1,12 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Building2, Calendar, Users, ExternalLink, Code, Database, Cloud, ChevronDown, ChevronUp, MapPin, Briefcase } from "lucide-react";
+import { Calendar, Users, ExternalLink, Code, ChevronDown, ChevronUp, MapPin, Briefcase } from "lucide-react";
+import Image from "next/image";
 import { useState } from "react";
+import { useLanguage } from "@/app/contexts/LanguageContext";
 
-const experiences = [
+const experiencesVi = [
   {
     company: "Physcode",
     role: "Fullstack Developer",
@@ -12,19 +14,20 @@ const experiences = [
     location: "Hà Nội, Việt Nam",
     type: "Full-time",
     mode: "Onsite",
-    logo: "🏢",
+    logo: "/experience/physcode-logo.png",
     projects: [
       {
         name: "Mosyne AI – Nền tảng chỉnh sửa ảnh (3 thành viên)",
         description: "Phát triển nền tảng web chỉnh sửa ảnh chuyên nghiệp ứng dụng AI, cung cấp các công cụ như xóa nền, inpainting, phóng to ảnh, sinh nền từ văn bản... Hệ thống hỗ trợ giao diện canvas trực quan, thao tác drag & drop, chia sẻ dự án, xác thực người dùng, thanh toán, và bộ công cụ thiết kế thương hiệu.",
         tech: ["NextJS", "TypeScript", "Ant Design", "Tailwind CSS", "Konva.js", "React-Konva", "Zustand", "React Query", "MongoDB", "AWS S3", "Redis", "PayPal"],
-        demo: "https://doop-staging.acdtech.asia",
+        demo: "https://mosyne.ai",
         responsibilities: [
-          "Xây dựng mã nền cho dự án front-end, bao gồm việc định nghĩa kiến trúc và thiết lập các quy tắc viết mã.",
-          "Triển khai và quản lý quy trình CI/CD.",
-          "Phát triển và duy trì các tính năng front-end.",
-          "Đưa ra phản hồi và điều chỉnh để cải thiện thiết kế giao diện người dùng.",
-          "Hỗ trợ phát triển back-end bằng cách sửa lỗi và cải thiện mã nguồn back-end khi cần thiết."
+          "Thiết kế kiến trúc và xây dựng toàn bộ hệ thống full-stack ",
+          "Phát triển giao diện canvas với drag & drop, inpainting, background generation và các công cụ chỉnh sửa ảnh.",
+          "Xây dựng API back-end, thiết kế database MongoDB, triển khai caching bằng Redis và lưu trữ AWS S3.",
+          "Tích hợp hệ thống thanh toán (PayPal) và cơ chế xác thực người dùng an toàn.",
+          "Thiết lập và quản lý quy trình CI/CD, tối ưu hiệu năng và khả năng mở rộng hệ thống.",
+          "Định nghĩa coding convention, review code và điều phối quy trình phát triển trong nhóm."
         ]
       },
       {
@@ -37,6 +40,7 @@ const experiences = [
       },
       {
         name: "KNU Component Platform – Cổng thông tin giáo dục số",
+        demo: "https://knu.component.team/",
         description: "Phát triển website chính thức cho dự án đổi mới giáo dục AI của Đại học Kyungpook. Xây dựng hệ thống đa ngôn ngữ, tối ưu SEO, tích hợp CMS và CI/CD",
         responsibilities: [
           "Phát triển website chính thức cho dự án đổi mới giáo dục AI của Đại học Kyungpook",
@@ -52,13 +56,13 @@ const experiences = [
     location: "Hà Nội, Việt Nam",
     type: "Full-time",
     mode: "Onsite",
-    logo: "🏢",
+    logo: "/experience/acd-logo.png",
     projects: [
       {
         name: "DOOP - F&B Management System (8 thành viên)",
         description: "Ứng dụng web quản lý dịch vụ F&B và giải trí với các tính năng nổi bật như quản lý chi nhánh, vai trò và phân quyền nhân viên, hệ thống POS hỗ trợ bán hàng, quản lý tồn kho và sản phẩm, CRM tương tác khách hàng, theo dõi tài chính, quản lý gói dịch vụ, cùng với báo cáo kinh doanh chi tiết và phân tích số liệu",
         tech: ["NextJS", "TypeScript", "Ant Design", "Tailwind CSS", "Java Spring Boot", "MySQL", "JPA/Hibernate"],
-        demo: "https://mosyne.ai",
+        demo:  "https://doop-staging.acdtech.asia",
         responsibilities: [
           "Thiết kế & phát triển toàn bộ frontend với Next.js & TailwindCSS",
           "Xây dựng canvas editor với Konva.js (drag-drop, layer, undo/redo)",
@@ -86,7 +90,6 @@ const experiences = [
         name: "Decoraz",
         description: "Một trang web thương mại điện tử cung cấp đầy đủ các tính năng thường có trên các nền tảng bán lẻ trực tuyến. Trang web bao gồm danh sách sản phẩm, bài viết blog, quản lý giảm giá và khuyến mãi, chức năng giỏ hàng, tài khoản người dùng, chính sách, thông tin liên hệ, các tùy chọn mua sắm và chương trình liên kết.",
         tech: ["NextJs", "Material UI", "Tailwind CSS", "Java Spring Boot", "MySQL"],
-        demo: "https://decoraz.vn",
         responsibilities: [
           "Phát triển và triển khai front-end cho trang web, đảm bảo tính năng và trải nghiệm người dùng.",
           "Thiết kế và xây dựng các trang web dựa trên mockup hoặc mẫu thiết kế đã được cung cấp.",
@@ -100,9 +103,114 @@ const experiences = [
   }
 ];
 
+const experiencesEn = [
+  {
+    company: "Physcode",
+    role: "Fullstack Developer",
+    time: "03/2025 - Present",
+    location: "Hanoi, Vietnam",
+    type: "Full-time",
+    mode: "Onsite",
+    logo: "/experience/physcode-logo.png",
+    projects: [
+      {
+        name: "Mosyne AI – AI-powered image editor (3 members)",
+        description: "Built a professional AI image editing web platform with tools like background removal, inpainting, upscaling, and text-to-background. Includes intuitive canvas UI, drag & drop, project sharing, authentication, payments, and brand design toolkit.",
+        tech: ["NextJS", "TypeScript", "Ant Design", "Tailwind CSS", "Konva.js", "React-Konva", "Zustand", "React Query", "MongoDB", "AWS S3", "Redis", "PayPal"],
+        demo: "https://mosyne.ai",
+        responsibilities: [
+          "Designed architecture and built the entire full‑stack system",
+          "Developed canvas UI with drag & drop, inpainting, background generation, and editing tools",
+          "Implemented backend APIs, MongoDB schema, Redis caching, and AWS S3 storage",
+          "Integrated payments (PayPal) and secure user authentication",
+          "Set up and maintained CI/CD, optimized performance and scalability",
+          "Defined coding conventions, reviewed code, and coordinated team workflow"
+        ]
+      },
+      {
+        name: "Washbank – Car wash chain management system",
+        description: "Developed an admin platform for the car wash industry in Korea. Implemented booking system, payment processing, and detailed management dashboards.",
+        responsibilities: [
+          "Built a comprehensive admin platform for the car wash industry in Korea",
+          "Implemented scheduling, payment processing, and detailed dashboards"
+        ]
+      },
+      {
+        name: "KNU Component Platform – Education portal",
+        demo: "https://knu.component.team/",
+        description: "Developed the official website for KNU's AI education innovation project. Added multilingual support, SEO optimization, CMS integration, and CI/CD.",
+        responsibilities: [
+          "Developed the official website for KNU's AI education innovation project",
+          "Implemented multilingual system, SEO optimization, CMS, and CI/CD"
+        ]
+      }
+    ]
+  },
+  {
+    company: "ACD TECHNOLOGY",
+    role: "Full Stack Developer",
+    time: "07/2023 - 02/2025",
+    location: "Hanoi, Vietnam",
+    type: "Full-time",
+    mode: "Onsite",
+    logo: "/experience/acd-logo.png",
+    projects: [
+      {
+        name: "DOOP - F&B Management System (8 members)",
+        description: "Web app to manage F&B and entertainment services with branch management, role-based access, POS, inventory & product management, CRM, finance tracking, service packages, and detailed business reports & analytics.",
+        tech: ["NextJS", "TypeScript", "Ant Design", "Tailwind CSS", "Java Spring Boot", "MySQL", "JPA/Hibernate"],
+        demo:  "https://doop-staging.acdtech.asia",
+        responsibilities: [
+          "Designed & developed the entire frontend with Next.js & TailwindCSS",
+          "Built a canvas editor using Konva.js (drag-drop, layers, undo/redo)",
+          "Implemented backend (APIs, MongoDB, Mongoose)",
+          "Integrated authentication (Email, Google, JWT, password reset)",
+          "Managed image projects (save, share link, auto-save, thumbnails)",
+          "Integrated PayPal, built service packages & feature limits",
+          "Optimized performance (SSR, lazy load) & security (CSRF, validation)"
+        ]
+      },
+      {
+        name: "UpdownCrypto (2 members)",
+        description: "Web app using TradingView Lightweight Charts to display Bitcoin price movements in real time, supporting per-second and per-minute updates with accurate data.",
+        tech: ["ReactJs", "TypeScript", "Ant Design", "Tailwind CSS", "Java Spring Boot", "MongoDB", "WebSocket", "Socket.IO"],
+        responsibilities: [
+          "Bootstrapped the frontend architecture and coding standards",
+          "Developed and maintained frontend features across devices",
+          "Supported backend by fixing bugs and improving code",
+          "Implemented real-time updates via Socket.IO and WebSocket",
+          "Integrated TradingView Lightweight Charts for accurate visuals",
+          "Provided UX feedback and design improvement suggestions"
+        ]
+      },
+      {
+        name: "Decoraz",
+        description: "An e-commerce website with typical retail features: product listing, blog posts, discounts and promotions, shopping cart, user accounts, policies, contact info, shopping options, and affiliate program.",
+        tech: ["NextJs", "Material UI", "Tailwind CSS", "Java Spring Boot", "MySQL"],
+        responsibilities: [
+          "Developed and deployed the frontend ensuring functionality and UX",
+          "Built pages from provided mockups/designs",
+          "Optimized SEO for better visibility and rankings",
+          "Created an admin dashboard to manage content and features",
+          "Handled deployment to ensure stable operation"
+        ],
+        features: ["E-commerce", "SEO Optimization", "Admin Dashboard", "Responsive Design", "Payment Integration"]
+      }
+    ]
+  }
+];
+
 export default function Experience() {
-  const [expandedCompany, setExpandedCompany] = useState<number | null>(null);
+  const { t, language } = useLanguage();
   const [expandedProjects, setExpandedProjects] = useState<{ [key: string]: boolean }>({});
+  const experiences = language === 'vi' ? experiencesVi : experiencesEn;
+
+  const getCareerKey = (company: string) => {
+    const normalized = company.trim().toLowerCase();
+    if (normalized.includes('physcode')) return 'physcode';
+    if (normalized.includes('acd')) return 'acd';
+    return undefined;
+  };
 
   const toggleProject = (companyIndex: number, projectIndex: number) => {
     const key = `${companyIndex}-${projectIndex}`;
@@ -128,11 +236,9 @@ export default function Experience() {
           transition={{ duration: 0.5, delay: 0.4 }}
         >
           <Briefcase className="w-8 h-8 text-primary" />
-          <h2 className="text-3xl font-bold gradient-text">Experience</h2>
+          <h2 className="text-3xl font-bold gradient-text">{t('sections.experience.title')}</h2>
         </motion.div>
-        <p className="text-xl leading-relaxed text-muted-foreground">
-          My professional journey across diverse projects and technologies, demonstrating expertise in full-stack development and modern web applications.
-        </p>
+        <p className="text-xl leading-relaxed text-muted-foreground">{t('sections.experience.subtitle')}</p>
       </motion.div>
 
       <div className="border w-full" />
@@ -171,19 +277,27 @@ export default function Experience() {
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
                   <div className="flex gap-2">
                       <div className="relative">
-                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg">
-                          <Building2 className="w-8 h-8 text-white" />
+                        <div className="w-16 h-16 overflow-hidden rounded-full bg-gradient-to-br from-primary to-primary/70 flex items-center justify-center shadow-lg">
+                          <Image src={exp.logo} alt={exp.company} width={64} height={64} />
                         </div>
                       </div>
                       <div className="space-y-2">
                         <h3 className="text-2xl font-bold text-primary">{exp.company}</h3>
-                        <p className="text-lg font-semibold">{exp.role}</p>
+                        <p className="text-lg font-semibold">
+                          {(() => {
+                            const key = getCareerKey(exp.company);
+                            return key ? t(`sections.careerData.${key}.position`) : exp.role;
+                          })()}
+                        </p>
                       </div>
                   </div>
                     <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
                       <div className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
-                        {exp.time}
+                        {(() => {
+                          const key = getCareerKey(exp.company);
+                          return key ? t(`sections.careerData.${key}.period`) : exp.time;
+                        })()}
                       </div>
                       <div className="flex items-center gap-1">
                         <MapPin className="w-4 h-4" />
@@ -191,10 +305,16 @@ export default function Experience() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="bg-primary/10 text-primary px-2 py-1 rounded text-xs font-medium">
-                          {exp.type}
+                          {(() => {
+                            const key = getCareerKey(exp.company);
+                            return key ? t(`sections.careerData.${key}.type`) : exp.type;
+                          })()}
                         </span>
                         <span className="bg-accent px-2 py-1 rounded text-xs font-medium">
-                          {exp.mode}
+                          {(() => {
+                            const key = getCareerKey(exp.company);
+                            return key ? t(`sections.careerData.${key}.mode`) : exp.mode;
+                          })()}
                         </span>
                       </div>
                     </div>
@@ -224,7 +344,7 @@ export default function Experience() {
                                     className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors"
                                   >
                                     <ExternalLink className="w-4 h-4" />
-                                    Demo
+                                    {t('sections.projects.viewProject')}
                                   </a>
                                 )}
                               </div>
@@ -237,7 +357,7 @@ export default function Experience() {
                             <div className="space-y-2">
                               <div className="flex items-center gap-2">
                                 <Code className="w-4 h-4 text-primary" />
-                                <span className="font-semibold text-sm text-primary">Technologies:</span>
+                                <span className="font-semibold text-sm text-primary">{t('sections.projects.technologies')}:</span>
                               </div>
                               <div className="flex flex-wrap gap-2">
                                 {project.tech.map((tech, techIdx) => (
@@ -263,7 +383,9 @@ export default function Experience() {
                               ) : (
                                 <ChevronDown className="w-4 h-4" />
                               )}
-                              {expandedProjects[`${idx}-${projectIdx}`] ? "Hide responsibilities" : "Show responsibilities"}
+                              {expandedProjects[`${idx}-${projectIdx}`]
+                                ? t('sections.career.hideResponsibilities')
+                                : t('sections.career.showResponsibilities')}
                             </button>
 
                             <motion.div
@@ -277,7 +399,7 @@ export default function Experience() {
                             >
                               <div className="flex items-center gap-2 mb-2 pt-2">
                                 <Users className="w-4 h-4 text-primary" />
-                                <span className="font-semibold text-sm text-primary">Responsibilities:</span>
+                                <span className="font-semibold text-sm text-primary">{language === 'vi' ? 'Trách nhiệm:' : 'Responsibilities:'}</span>
                               </div>
                               <ul className="space-y-2 pl-6">
                                 {project.responsibilities.map((resp, respIdx) => (
