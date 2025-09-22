@@ -13,7 +13,6 @@ import {
   BarChart3,
   Mail,
   ArrowRight,
-  MessageCircle,
   Menu,
   X,
 } from "lucide-react";
@@ -49,7 +48,7 @@ export default function Sidebar({
   return (
     <>
       {/* Mobile Menu Button */}
-      <div className="lg:hidden fixed top-4 left-4 z-50">
+      <div className="lg:hidden fixed top-4 right-4 z-50">
         <motion.button
           whileTap={{ scale: 0.95 }}
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -104,7 +103,7 @@ export default function Sidebar({
               <h2 className="text-xl font-bold text-foreground">
                 {t("profile.name")}
               </h2>
-              <p className="text-sm text-muted-foreground">{t("profile.username")}</p>
+              <p className="text-sm text-muted-foreground">{t("profile.title")}</p>
             </div>
 
             {/* Language and Theme Toggle */}
@@ -140,17 +139,7 @@ export default function Sidebar({
           ))}
         </nav>
 
-        {/* Smart Talk Button */}
-        <div className="p-4 border-t border-border">
-          <motion.button
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full flex items-center justify-center gap-2 p-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-200"
-          >
-            <MessageCircle className="w-5 h-5" />
-            {t("actions.smartTalk")}
-          </motion.button>
-        </div>
+ 
 
         {/* Copyright */}
         <div className="p-4 border-t border-border">
@@ -212,7 +201,7 @@ export default function Sidebar({
                     <h2 className="text-xl font-bold text-foreground">
                       {t("profile.name")}
                     </h2>
-                    <p className="text-sm text-muted-foreground">{t("profile.username")}</p>
+                    <p className="text-sm text-muted-foreground">{t("profile.title")}</p>
                   </div>
 
                   {/* Language and Theme Toggle */}
@@ -249,17 +238,7 @@ export default function Sidebar({
                 ))}
               </nav>
 
-              {/* Smart Talk Button */}
-              <div className="p-4 border-t border-border">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="w-full flex items-center justify-center gap-2 p-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-200"
-                >
-                  <MessageCircle className="w-5 h-5" />
-                  {t("actions.smartTalk")}
-                </motion.button>
-              </div>
+          
 
               {/* Copyright */}
               <div className="p-4 border-t border-border">

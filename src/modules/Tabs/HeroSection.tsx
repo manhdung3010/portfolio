@@ -1,22 +1,46 @@
 'use client'
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { MapPin, CheckCircle, Code2 } from "lucide-react";
 import { useLanguage } from "../../app/contexts/LanguageContext";
 import { STACKS } from "@/app/common/constants/stacks";
 import GlassIcon from "@/app/components/GlassIcon";
+import Link from "next/link";
+import { useMemo } from "react";
+
+// Variants for performant, batched animations
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.03,
+      delayChildren: 1.0,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10, scale: 0.96 },
+  visible: { opacity: 1, y: 0, scale: 1 },
+};
 
 export default function HeroSection() {
   const { t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   const stacksInArray: Array<
     [string, { icon: JSX.Element; background: string }]
-  > = Object.entries(STACKS)
-    .filter(([, value]) => value.isActive)
-    .map(([name, value]) => [
-      name,
-      { icon: value.icon, background: value.background },
-    ]);
+  > = useMemo(
+    () =>
+      Object.entries(STACKS)
+        .filter(([, value]) => value.isActive)
+        .map(([name, value]) => [
+          name,
+          { icon: value.icon, background: value.background },
+        ]),
+    []
+  );
 
 
 
@@ -63,18 +87,20 @@ export default function HeroSection() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.6 }}
         >
-          <a
-            href="#projects"
+          <Link
+            href="?tab=projects"
+            scroll={false}
             className="px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200"
           >
             {t("actions.viewWork")}
-          </a>
-          <a
-            href="#contact"
+          </Link>
+          <Link
+            href="?tab=contact"
+            scroll={false}
             className="px-6 py-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
           >
             {t("actions.getInTouch")}
-          </a>
+          </Link>
         </motion.div>
       </motion.div>
 
@@ -84,9 +110,9 @@ export default function HeroSection() {
       {/* Skills Section */}
       <motion.div
         className="space-y-8"
-        initial={{ y: 40, opacity: 0 }}
+        initial={{ y: shouldReduceMotion ? 0 : 40, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.8 }}
+        transition={{ duration: shouldReduceMotion ? 0.2 : 0.6, delay: 0.6 }}
       >
         {/* Skills Header */}
         <div className="text-center space-y-4">
@@ -107,47 +133,36 @@ export default function HeroSection() {
         {/* Skills Grid */}
         <motion.div
           className="relative"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
+          viewport={{ once: true, amount: 0.2 }}
         >
-          
-          <div className="relative bg-card/50 backdrop-blur-sm ">
+          <div className="relative bg-card/30 backdrop-blur-sm rounded-2xl p-6">
             <div 
-              className="grid grid-cols-3  sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-12"
+              className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10"
               style={{ 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fit, minmax(60px, 1fr))',
-                gap: '20px'
+                gap: '16px'
               }}
             >
-              {stacksInArray.map(([name, { icon, background }], index) => (
+              {stacksInArray.map(([name, { icon, background }]) => (
                 <motion.div
-                key={index}
-                className="flex justify-center items-center"
-                initial={{ opacity: 0, scale: 0.5, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 1.4 + index * 0.02,
-                  ease: "easeOut"
-                }}
-                whileHover={{ 
-                  scale: 1.1,
-                  transition: { duration: 0.2 }
-                }}
-              >
-                <GlassIcon
-                  name={name}
-                  icon={icon}
-                  background={background}
-                />
-              </motion.div>
-              
+                  key={name}
+                  className="flex justify-center items-center transform-gpu relative z-0 hover:z-50"
+                  style={{ willChange: 'transform, opacity' }}
+                  variants={shouldReduceMotion ? undefined : itemVariants}
+                  initial={shouldReduceMotion ? { opacity: 0 } : undefined}
+                  animate={shouldReduceMotion ? { opacity: 1 } : undefined}
+                  transition={shouldReduceMotion ? { duration: 0.2 } : { duration: 0.35, ease: 'easeOut' }}
+                >
+                  <GlassIcon
+                    name={name}
+                    icon={icon}
+                    background={background}
+                  />
+                </motion.div>
               ))}
             </div>
-            
- 
           </div>
         </motion.div>
 

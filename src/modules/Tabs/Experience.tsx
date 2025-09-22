@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Calendar, Users, ExternalLink, Code, ChevronDown, ChevronUp, MapPin, Briefcase } from "lucide-react";
+import { Calendar, Users, ExternalLink, Code, ChevronDown, ChevronUp, MapPin, Briefcase, User, Globe, Clock } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { useLanguage } from "@/app/contexts/LanguageContext";
@@ -200,10 +200,143 @@ const experiencesEn = [
   }
 ];
 
+// Freelance Experience Data
+const freelanceExperiencesVi = [
+  {
+    client: "Chôm Chôm Travel",
+    project: "Website giới thiệu công ty du lịch (WordPress)",
+    time: "1 tháng",
+    location: "Remote",
+    type: "Freelance",
+    mode: "Remote",
+    duration: "1 tháng",
+    logo: "/experience/chomchom-travel-logo.png",
+    description: "Website giới thiệu cho công ty du lịch: thiết kế giao diện, tối ưu hiệu năng và SEO cơ bản, triển khai trên WordPress, tích hợp landing pages cho các gói trải nghiệm.",
+    tech: ["HTML", "CSS", "JavaScript", "WordPress", "SEO", "Responsive"],
+    deliverables: [
+      "Thiết kế UI/UX và xây dựng theme WordPress",
+      "Tối ưu tốc độ tải trang và SEO on-page",
+      "Tạo các landing page cho trải nghiệm/route du lịch",
+      "Hướng dẫn biên tập nội dung và quản trị"
+    ],
+    demo: "https://chomchomtravel.com/"
+  },
+  {
+    client: "ANTECH Group",
+    project: "Website bán sản phẩm (Next.js + Java BE)",
+    time: "2 tháng",
+    location: "Remote",
+    type: "Freelance",
+    mode: "Remote",
+    duration: "2 tháng",
+    logo: "/experience/antech-logo.png",
+    description: "Xây dựng website bán sản phẩm: SEO đầy đủ, quản lý sản phẩm/mua hàng, trang admin, nhân bản/clone sản phẩm, tích hợp backend Java Spring Boot.",
+    tech: ["Next.js", "TypeScript", "TailwindCSS","Ant Design", "SEO", "Java Spring Boot", "MySQL"],
+    deliverables: [
+      "Frontend Next.js (SSR/ISR) tối ưu SEO",
+      "Quản lý sản phẩm, giỏ hàng, thanh toán",
+      "Trang quản trị (admin) và phân quyền",
+      "Tích hợp BE Java Spring Boot, MySQL",
+      "Chức năng clone/nhân bản sản phẩm"
+    ],
+    demo: "https://antechgroup.com.vn/"
+  },
+  {
+    client: "Ken Photos",
+    project: "Website dịch vụ (Next.js) + Admin + SEO",
+    time: "2 tháng",
+    location: "Remote",
+    type: "Freelance",
+    mode: "Remote",
+    duration: "2 tháng",
+    logo: "/experience/kenphoto-logo.png",
+    description: "Website dịch vụ chỉnh sửa ảnh bất động sản: đầy đủ trang bán hàng, blog, pages, sản phẩm, SEO, có trang quản trị; backend Node.js.",
+    tech: ["Next.js", "Node.js", "Express", "TailwindCSS", "SEO", "Admin", "Ant Design"],
+    deliverables: [
+      "Hệ thống pages/sản phẩm/blog đầy đủ",
+      "Trang admin quản lý nội dung và đơn hàng",
+      "SEO technical + content structure",
+      "Triển khai và cấu hình trên hosting/VPS"
+    ],
+    demo: "http://web.kenphotos.com/"
+  }
+];
+
+const freelanceExperiencesEn = [
+  {
+    client: "Chôm Chôm Travel",
+    project: "Company profile website (WordPress)",
+    time: "1 month",
+    location: "Remote",
+    type: "Freelance",
+    mode: "Remote",
+    duration: "1 month",
+    logo: "/experience/chomchom-travel-logo.png",
+    description: "Corporate travel introduction site: UI design, performance optimization, SEO basics, WordPress setup with landing pages for experiences.",
+    tech: ["HTML", "CSS", "JavaScript", "WordPress", "SEO", "Responsive"],
+    deliverables: [
+      "Custom WordPress theme and UI/UX",
+      "On-page SEO and performance optimization",
+      "Experience/route landing pages",
+      "Content management guidance"
+    ],
+    demo: "https://chomchomtravel.com/"
+  },
+  {
+    client: "ANTECH Group",
+    project: "Product e-commerce (Next.js + Java BE)",
+    time: "2 months",
+    location: "Remote",
+    type: "Freelance",
+    mode: "Hybrid",
+    duration: "2 months",
+    logo: "/experience/antech-logo.png",
+    description: "Built a product selling website: full SEO, product and checkout flows, admin panel, product cloning, Java Spring Boot backend integration.",
+    tech: ["Next.js", "TypeScript", "TailwindCSS", "SEO", "Java Spring Boot", "MySQL"],
+    deliverables: [
+      "SEO-friendly Next.js (SSR/ISR)",
+      "Catalog, cart and checkout features",
+      "Admin panel with role-based access",
+      "Integration with Java Spring Boot + MySQL",
+      "Product cloning functionality"
+    ],
+    demo: "https://antechgroup.com.vn/"
+  },
+  {
+    client: "Ken Photos",
+    project: "Service website (Next.js) + Admin + SEO",
+    time: "2 months",
+    location: "Remote",
+    type: "Freelance",
+    mode: "Remote",
+    duration: "2 months",
+    logo: "/experience/kenphoto-logo.png",
+    description: "Real-estate photo editing service site: complete storefront with blog, pages, products, SEO, admin dashboard; Node.js backend.",
+    tech: ["Next.js", "Node.js", "Express", "TailwindCSS", "SEO", "Admin"],
+    deliverables: [
+      "Full pages/products/blog structure",
+      "Admin to manage content and orders",
+      "Technical SEO + content structure",
+      "Deployment and hosting configuration"
+    ],
+    demo: "http://web.kenphotos.com/"
+  }
+];
+
 export default function Experience() {
   const { t, language } = useLanguage();
   const [expandedProjects, setExpandedProjects] = useState<{ [key: string]: boolean }>({});
+  const [expandedFreelance, setExpandedFreelance] = useState<{ [key: string]: boolean }>({});
   const experiences = language === 'vi' ? experiencesVi : experiencesEn;
+  const freelanceExperiences = language === 'vi' ? freelanceExperiencesVi : freelanceExperiencesEn;
+
+  const getInitials = (name: string) => {
+    if (!name) return '';
+    const words = name.trim().split(/\s+/);
+    const first = words[0]?.[0] || '';
+    const last = words.length > 1 ? words[words.length - 1][0] : '';
+    return (first + last).toUpperCase();
+  };
 
   const getCareerKey = (company: string) => {
     const normalized = company.trim().toLowerCase();
@@ -215,6 +348,14 @@ export default function Experience() {
   const toggleProject = (companyIndex: number, projectIndex: number) => {
     const key = `${companyIndex}-${projectIndex}`;
     setExpandedProjects(prev => ({
+      ...prev,
+      [key]: !prev[key]
+    }));
+  };
+
+  const toggleFreelance = (freelanceIndex: number) => {
+    const key = `freelance-${freelanceIndex}`;
+    setExpandedFreelance(prev => ({
       ...prev,
       [key]: !prev[key]
     }));
@@ -414,6 +555,187 @@ export default function Experience() {
                         </div>
                       </motion.div>
                     ))}
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
+
+      <motion.div
+        className="space-y-8"
+        initial={{ y: 40, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 1.2 }}
+      >
+        {/* Freelance Header */}
+        <motion.div
+          className="flex items-center gap-3 mb-8"
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, delay: 1.4 }}
+        >
+          <User className="w-8 h-8 text-primary" />
+          <h2 className="text-3xl font-bold gradient-text">
+            {language === 'vi' ? 'Kinh Nghiệm Freelance' : 'Freelance Experience'}
+          </h2>
+        </motion.div>
+
+        <div className="border w-full" />
+
+        {/* Freelance Projects */}
+        {freelanceExperiences.map((freelance, idx) => (
+          <motion.div
+            key={idx}
+            className="relative"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.6 + idx * 0.2 }}
+          >
+            {/* Timeline connector */}
+            {idx < freelanceExperiences.length - 1 && (
+              <div className="absolute left-8 top-20 w-0.5 h-32 bg-gradient-to-b from-primary/50 to-transparent"></div>
+            )}
+
+            <div className="flex gap-6">
+          
+              {/* Freelance content */}
+              <div className="flex-1">
+                <motion.div
+                  className="bg-card/50 backdrop-blur-sm border border-border rounded-xl p-6 hover:shadow-lg transition-all duration-300"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  {/* Freelance Header */}
+                  <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
+                    <div className="flex gap-4">
+                      <div className="relative">
+                        <div className="w-16 h-16 rounded-full bg-white border border-border ring-1 ring-black/5 shadow-sm flex items-center justify-center overflow-hidden">
+                          {freelance.logo ? (
+                            <Image 
+                              src={freelance.logo} 
+                              alt={freelance.client} 
+                              width={64} 
+                              height={64}
+                              className="w-full h-full object-contain p-1"
+                            />
+                          ) : (
+                            <span className="text-primary font-bold text-lg">
+                              {getInitials(freelance.client)}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <h3 className="text-2xl font-bold text-primary">{freelance.client}</h3>
+                        <p className="text-lg font-semibold text-muted-foreground">{freelance.project}</p>
+                      </div>
+                    </div>
+                    
+                    {/* Freelance Badge */}
+                    <div className="flex items-center gap-2">
+                      <span className="bg-purple-500/10 text-purple-500 px-3 py-1 rounded-full text-sm font-medium">
+                        {freelance.type}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Freelance Details */}
+                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Calendar className="w-4 h-4" />
+                      <span>{freelance.time}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <MapPin className="w-4 h-4" />
+                      <span>{freelance.location}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Clock className="w-4 h-4" />
+                      <span>{freelance.duration}</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Globe className="w-4 h-4" />
+                      <span>{freelance.mode}</span>
+                    </div>
+                  </div>
+
+                  {/* Budget removed per request */}
+
+                  {/* Description */}
+                  <p className="text-muted-foreground mb-6 leading-relaxed">{freelance.description}</p>
+
+                  {/* Tech Stack */}
+                  <div className="mb-6">
+                    <h4 className="text-sm font-semibold text-primary mb-3">Technologies Used</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {freelance.tech.map((tech, techIdx) => (
+                        <span
+                          key={techIdx}
+                          className="bg-accent px-3 py-1 rounded-full text-xs font-medium"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Expandable Details (Results removed per request) */}
+                  <div className="space-y-4">
+                    {/* Deliverables */}
+                    <div>
+                      <button
+                        onClick={() => toggleFreelance(idx)}
+                        className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+                      >
+                        <h4 className="text-sm font-semibold">Deliverables</h4>
+                        {expandedFreelance[`freelance-${idx}`] ? (
+                          <ChevronUp className="w-4 h-4" />
+                        ) : (
+                          <ChevronDown className="w-4 h-4" />
+                        )}
+                      </button>
+                      
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          height: expandedFreelance[`freelance-${idx}`] ? "auto" : 0,
+                          opacity: expandedFreelance[`freelance-${idx}`] ? 1 : 0
+                        }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="pt-4 space-y-4">
+                          {/* Deliverables */}
+                          <div>
+                            <h5 className="text-sm font-semibold text-primary mb-2">Key Deliverables</h5>
+                            <ul className="space-y-2">
+                              {freelance.deliverables.map((deliverable, delIdx) => (
+                                <li key={delIdx} className="flex items-start gap-2 text-sm text-muted-foreground">
+                                  <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></div>
+                                  <span>{deliverable}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          {/* Demo Link */}
+                          {freelance.demo && (
+                            <div className="pt-2">
+                              <a
+                                href={freelance.demo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+                              >
+                                <ExternalLink className="w-4 h-4" />
+                                <span className="text-sm font-medium">View Demo</span>
+                              </a>
+                            </div>
+                          )}
+                        </div>
+                      </motion.div>
+                    </div>
                   </div>
                 </motion.div>
               </div>
