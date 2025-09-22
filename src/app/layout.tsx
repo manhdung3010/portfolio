@@ -7,7 +7,7 @@ import { LanguageProvider } from "./contexts/LanguageContext";
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
   return (
-    <html lang="vi" suppressHydrationWarning className="scroll-smooth">
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <head>
         <link rel="icon" href="/favicon.ico" />
       </head>
