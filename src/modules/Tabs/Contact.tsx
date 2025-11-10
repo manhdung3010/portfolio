@@ -103,7 +103,7 @@ export default function Contact() {
         setSubmitMessage(t("sections.contact.messages.success"));
         setFormData({ name: "", email: "", subject: "", message: "" });
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus("error");
       setSubmitMessage(t("sections.contact.messages.error"));
     }

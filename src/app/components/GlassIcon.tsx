@@ -1,6 +1,6 @@
 // GlassIcon.tsx - Optimized version
 import { motion } from "framer-motion";
-import React from "react";
+import { memo } from "react";
 
 export interface GlassIconProps {
   name: string;
@@ -8,7 +8,7 @@ export interface GlassIconProps {
   background: string;
 }
 
-const GlassIcon: React.FC<GlassIconProps> = ({ name, icon, background }) => {
+const GlassIconComponent: React.FC<GlassIconProps> = ({ name, icon, background }) => {
   const containerVariants = {
     initial: { scale: 1, y: 0 },
     hover: { scale: 1.05, y: -2 },
@@ -80,4 +80,10 @@ const GlassIcon: React.FC<GlassIconProps> = ({ name, icon, background }) => {
   );
 };
 
-export default GlassIcon;
+export default memo(
+  GlassIconComponent,
+  (prev, next) =>
+    prev.name === next.name &&
+    prev.background === next.background &&
+    prev.icon.type === next.icon.type
+);

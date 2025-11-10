@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import FloatingParticles from "./components/FloatingParticles";
-import AnimatedBackground from "./components/AnimatedBackground";
 import HomePage from "@/modules/Home";
+import BackgroundEffects from "./components/BackgroundEffects";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://your-portfolio-url.com"),
@@ -31,10 +30,9 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <div className="relative h-screen overflow-hidden">
-      <AnimatedBackground />
-      <FloatingParticles />
+      <BackgroundEffects />
       <Suspense fallback={null}>
-        <HomePage/>
+        <HomePage />
       </Suspense>
     </div>
   );

@@ -16,7 +16,6 @@ import {
   Settings,
   CheckCircle,
   ExternalLink,
-  Calendar,
   User,
 } from "lucide-react";
 

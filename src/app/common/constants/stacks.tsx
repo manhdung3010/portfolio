@@ -1,6 +1,6 @@
 import { BiLogoPostgresql } from "react-icons/bi";
 import { BsFillBootstrapFill } from "react-icons/bs";
-import { FaNpm, FaPython, FaJava, FaAngular, FaReact, FaDocker, FaAws, FaGoogle, FaMicrosoft } from "react-icons/fa6";
+import { FaNpm, FaPython, FaJava, FaMicrosoft } from "react-icons/fa6";
 import {
   SiCss3,
   SiExpress,
