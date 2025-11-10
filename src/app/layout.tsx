@@ -1,8 +1,5 @@
-"use client";
-
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
-import { LanguageProvider } from "./contexts/LanguageContext";
+import Providers from "./Providers";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 
@@ -12,11 +9,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className="bg-background text-foreground transition-colors duration-500 ease-in-out">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <LanguageProvider>
-            {children}
-          </LanguageProvider>
-        </ThemeProvider>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

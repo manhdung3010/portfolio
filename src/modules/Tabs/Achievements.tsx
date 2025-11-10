@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import { Trophy, ExternalLink, X } from "lucide-react";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 
@@ -106,20 +107,24 @@ export default function Achievements() {
                     transition: { duration: 0.2 }
                   }}
                 >
-                   <div className="space-y-4">
+                    <div className="space-y-4">
                       <button
                         type="button"
                         onClick={() => openPreview(cert.image, cert.name)}
                         className="group w-full h-40 flex items-center justify-center relative rounded-md overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/40 cursor-zoom-in"
                         aria-label={`${t('sections.achievements.enlarge')}: ${cert.name}`}
                       >
-                        <img
+                        <Image
+                          fill
                           src={cert.image}
                           alt={cert.name}
-                          className="max-h-40 rounded-md shadow-md mx-auto transition-transform duration-300 group-hover:scale-[1.03]"
+                          className="object-contain rounded-md shadow-md transition-transform duration-300 group-hover:scale-[1.03]"
+                          sizes="(max-width: 640px) 80vw, 320px"
                         />
                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                        <div className="absolute bottom-2 right-2 bg-background/80 text-foreground border border-border rounded-md px-2 py-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">{t('sections.achievements.clickToView')}</div>
+                        <div className="absolute bottom-2 right-2 bg-background/80 text-foreground border border-border rounded-md px-2 py-1 text-xs opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          {t('sections.achievements.clickToView')}
+                        </div>
                       </button>
                       
                       {/* Info */}
@@ -162,32 +167,35 @@ export default function Achievements() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-            />
+              />
 
-            <motion.div
-              className="relative z-10 max-w-5xl w-[92vw] sm:w-auto max-h-[86vh] p-2"
-              initial={{ scale: 0.95, y: 10, opacity: 0 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ scale: 0.95, y: 10, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 250, damping: 24 }}
-            >
-              <div className="relative bg-background border border-border rounded-lg shadow-2xl overflow-hidden">
-                <img
-                  src={preview.src}
-                  alt={preview.alt}
-                  className="w-full h-full object-contain max-h-[86vh]"
-                />
+              <motion.div
+                className="relative z-10 max-w-5xl w-[92vw] sm:w-auto max-h-[86vh] p-2"
+                initial={{ scale: 0.95, y: 10, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                exit={{ scale: 0.95, y: 10, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 250, damping: 24 }}
+              >
+                <div className="relative bg-background border border-border rounded-lg shadow-2xl overflow-hidden">
+                  <Image
+                    src={preview.src}
+                    alt={preview.alt}
+                    width={1600}
+                    height={1200}
+                    className="w-full h-full object-contain max-h-[86vh]"
+                    sizes="90vw"
+                  />
 
-                <button
-                  type="button"
-                  onClick={closePreview}
-                  className="absolute top-2 right-2 inline-flex items-center justify-center w-9 h-9 rounded-md bg-background/90 border border-border text-black hover:text-foreground hover:bg-background transition-colors"
-                  aria-label={t('sections.achievements.close')}
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-            </motion.div>
+                  <button
+                    type="button"
+                    onClick={closePreview}
+                    className="absolute top-2 right-2 inline-flex items-center justify-center w-9 h-9 rounded-md bg-background/90 border border-border text-black hover:text-foreground hover:bg-background transition-colors"
+                    aria-label={t('sections.achievements.close')}
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
+              </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

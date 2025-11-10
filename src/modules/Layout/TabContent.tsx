@@ -1,20 +1,49 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
-import About from "../Tabs/About";
-import Experience from "../Tabs/Experience";
-import Projects from "../Tabs/Projects";
-import Contact from "../Tabs/Contact";
-import HeroSection from "../Tabs/HeroSection";
-import Achievements from "../Tabs/Achievements";
+import dynamic from "next/dynamic";
+import { useEffect, useMemo, useRef } from "react";
+import type { ComponentType } from "react";
 
 interface TabContentProps {
   activeTab: string;
-  onTabChange: (tabId: string) => void;
 }
 
-const tabs = [
+const TabFallback = () => (
+  <div className="p-6 text-sm text-muted-foreground">Loading section…</div>
+);
+
+const HeroSection = dynamic(() => import("../Tabs/HeroSection"), {
+  loading: () => <TabFallback />,
+});
+
+const About = dynamic(() => import("../Tabs/About"), {
+  loading: () => <TabFallback />,
+});
+
+const Experience = dynamic(() => import("../Tabs/Experience"), {
+  loading: () => <TabFallback />,
+});
+
+const Achievements = dynamic(() => import("../Tabs/Achievements"), {
+  loading: () => <TabFallback />,
+});
+
+const Projects = dynamic(() => import("../Tabs/Projects"), {
+  loading: () => <TabFallback />,
+});
+
+const Contact = dynamic(() => import("../Tabs/Contact"), {
+  loading: () => <TabFallback />,
+});
+
+type TabConfig = {
+  id: string;
+  label: string;
+  component: ComponentType;
+};
+
+const TABS: TabConfig[] = [
   { id: "home", label: "Home", component: HeroSection },
   { id: "about", label: "About", component: About },
   { id: "experience", label: "Experience", component: Experience },
@@ -23,22 +52,28 @@ const tabs = [
   { id: "contact", label: "Contact", component: Contact },
 ];
 
-export default function TabContent({ activeTab, onTabChange }: TabContentProps) {
+export default function TabContent({ activeTab }: TabContentProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component || HeroSection;
 
-  // Scroll to top when tab changes
+  const ActiveComponent = useMemo(
+    () => TABS.find((tab) => tab.id === activeTab)?.component ?? HeroSection,
+    [activeTab]
+  );
+
   useEffect(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTo({
         top: 0,
-        behavior: 'smooth'
+        behavior: "smooth",
       });
     }
   }, [activeTab]);
 
   return (
-    <div ref={scrollContainerRef} className="h-full w-full overflow-y-auto flex justify-center">
+    <div
+      ref={scrollContainerRef}
+      className="h-full w-full overflow-y-auto flex justify-center"
+    >
       <motion.div
         key={activeTab}
         initial={{ opacity: 0 }}

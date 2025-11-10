@@ -1,13 +1,11 @@
 "use client";
-import Image from "next/image";
 import ThemeToggle from "../../app/components/ThemeToggle";
-import { motion, useScroll } from "framer-motion";
+import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { scrollY } = useScroll();
 
   useEffect(() => {
     const handleScroll = () => {
