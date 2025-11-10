@@ -1,51 +1,97 @@
 'use client'
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { MapPin, CheckCircle, Code2 } from "lucide-react";
 import { useLanguage } from "../../app/contexts/LanguageContext";
 import { STACKS } from "@/app/common/constants/stacks";
-import GlassIcon from "@/app/components/GlassIcon";
 import Link from "next/link";
 import { useMemo } from "react";
 
-// Variants for performant, batched animations
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.03,
-      delayChildren: 1.0,
-    },
-  },
+// Replace black colors with dark theme-friendly alternatives
+const getThemeFriendlyColor = (name: string, originalColor: string, originalBackground: string): { color: string; background: string; isBlack: boolean } => {
+  // Map black colors to better alternatives for dark theme
+  // Using slate/gray colors that work well in both light and dark modes
+  const blackToColorMap: Record<string, { color: string; background: string }> = {
+    'Next.js': { color: 'text-slate-700 dark:text-slate-300', background: 'bg-slate-200 dark:bg-slate-700' },
+    'Socket.io': { color: 'text-slate-700 dark:text-slate-300', background: 'bg-slate-200 dark:bg-slate-700' },
+    'Vercel': { color: 'text-slate-700 dark:text-slate-300', background: 'bg-slate-200 dark:bg-slate-700' },
+    'GitHub': { color: 'text-slate-700 dark:text-slate-300', background: 'bg-slate-200 dark:bg-slate-700' },
+    'Prisma': { color: 'text-slate-700 dark:text-slate-300', background: 'bg-slate-200 dark:bg-slate-700' },
+    'Prettier': { color: 'text-slate-700 dark:text-slate-300', background: 'bg-slate-200 dark:bg-slate-700' },
+    'Markdown': { color: 'text-slate-700 dark:text-slate-300', background: 'bg-slate-200 dark:bg-slate-700' },
+    'Express.js': { color: 'text-slate-700 dark:text-slate-300', background: 'bg-slate-200 dark:bg-slate-700' },
+  };
+
+  const isBlack = originalBackground === 'bg-black' || originalColor === 'text-black';
+  
+  if (blackToColorMap[name]) {
+    return { ...blackToColorMap[name], isBlack: true };
+  }
+
+  return { color: originalColor, background: originalBackground, isBlack };
 };
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 10, scale: 0.96 },
-  visible: { opacity: 1, y: 0, scale: 1 },
+// Group skills by category
+const categorizeSkills = (stacks: typeof STACKS) => {
+  const categories: Record<string, Array<{ name: string; color: string; background: string; icon: JSX.Element; isBlack: boolean }>> = {
+    'Languages': [],
+    'Frontend': [],
+    'Backend': [],
+    'Database': [],
+    'Tools': [],
+    'Cloud & DevOps': [],
+    'Other': [],
+  };
+
+  const languageSkills = ['JavaScript', 'TypeScript', 'Python', 'Java', 'HTML5', 'CSS3'];
+  const frontendSkills = ['React', 'Next.js', 'Vue.js', 'Nuxt.js', 'Angular', 'Vite', 'Webpack', 'Redux', 'React Hook Form', 'Formik', 'Tailwind CSS', 'Chakra UI', 'Ant Design', 'Bootstrap', 'Styled Components', 'SCSS'];
+  const backendSkills = ['Node.js', 'Express.js', 'NestJS', 'GraphQL', 'Apollo GraphQL', 'Socket.io'];
+  const databaseSkills = ['MongoDB', 'PostgreSQL', 'MySQL', 'Redis', 'Prisma', 'Firebase'];
+  const cloudSkills = ['Docker', 'AWS', 'Google Cloud', 'Azure', 'Vercel', 'Render'];
+  const toolSkills = ['npm', 'Yarn', 'pnpm', 'ESLint', 'Prettier', 'Git', 'GitHub', 'GitLab', 'Postman', 'Figma', 'Markdown'];
+
+  Object.entries(stacks).forEach(([name, value]) => {
+    if (!value.isActive) return;
+
+    // Get theme-friendly colors (replace black with slate colors for dark theme)
+    const { color, background, isBlack } = getThemeFriendlyColor(name, value.color, value.background);
+
+    const skill = { 
+      name, 
+      color,
+      background,
+      icon: value.icon,
+      isBlack
+    };
+    
+    if (languageSkills.includes(name)) {
+      categories['Languages'].push(skill);
+    } else if (frontendSkills.includes(name)) {
+      categories['Frontend'].push(skill);
+    } else if (backendSkills.includes(name)) {
+      categories['Backend'].push(skill);
+    } else if (databaseSkills.includes(name)) {
+      categories['Database'].push(skill);
+    } else if (cloudSkills.includes(name)) {
+      categories['Cloud & DevOps'].push(skill);
+    } else if (toolSkills.includes(name)) {
+      categories['Tools'].push(skill);
+    } else {
+      categories['Other'].push(skill);
+    }
+  });
+
+  // Remove empty categories
+  return Object.entries(categories).filter(([, skills]) => skills.length > 0);
 };
 
 export default function HeroSection() {
   const { t } = useLanguage();
-  const shouldReduceMotion = useReducedMotion();
 
-  const stacksInArray: Array<
-    [string, { icon: JSX.Element; background: string }]
-  > = useMemo(
-    () =>
-      Object.entries(STACKS)
-        .filter(([, value]) => value.isActive)
-        .map(([name, value]) => [
-          name,
-          { icon: value.icon, background: value.background },
-        ]),
-    []
-  );
-
-
+  const skillCategories = useMemo(() => categorizeSkills(STACKS), []);
 
   return (
-    <div className="py-12 flex flex-col" style={{gap: '3rem'}}>
+    <div className="py-12 flex flex-col gap-12">
       {/* Hero Content */}
       <motion.div
         className="max-w-4xl"
@@ -104,69 +150,64 @@ export default function HeroSection() {
         </motion.div>
       </motion.div>
 
-      <div className="border w-full "/>
-
-
       {/* Skills Section */}
       <motion.div
-        className="space-y-8"
-        initial={{ y: shouldReduceMotion ? 0 : 40, opacity: 0 }}
+        className="w-full"
+        initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: shouldReduceMotion ? 0.2 : 0.6, delay: 0.6 }}
+        transition={{ duration: 0.7, delay: 0.8 }}
       >
-        {/* Skills Header */}
-        <div className="text-center space-y-4">
-          <motion.div
-            className="flex items-center justify-start gap-3"
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.5, delay: 1 }}
-          >
-            <Code2 className="w-8 h-8 text-primary" />
+        <div className="space-y-8">
+          {/* Section Header */}
+          <div className="flex items-center gap-3 mb-6">
+            <Code2 className="w-7 h-7 text-primary" />
             <h2 className="text-3xl font-bold gradient-text">
-              {t("sections.skills.title") }
+              {t("sections.skills.title")}
             </h2>
-          </motion.div>
-        </div>
-
-
-        {/* Skills Grid */}
-        <motion.div
-          className="relative"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-          viewport={{ once: true, amount: 0.2 }}
-        >
-          <div className="relative bg-card/30 backdrop-blur-sm rounded-2xl p-6">
-            <div 
-              className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10"
-              style={{ 
-                gap: '16px'
-              }}
-            >
-              {stacksInArray.map(([name, { icon, background }]) => (
-                <motion.div
-                  key={name}
-                  className="flex justify-center items-center transform-gpu relative z-0 hover:z-50"
-                  style={{ willChange: 'transform, opacity' }}
-                  variants={shouldReduceMotion ? undefined : itemVariants}
-                  initial={shouldReduceMotion ? { opacity: 0 } : undefined}
-                  animate={shouldReduceMotion ? { opacity: 1 } : undefined}
-                  transition={shouldReduceMotion ? { duration: 0.2 } : { duration: 0.35, ease: 'easeOut' }}
-                >
-                  <GlassIcon
-                    name={name}
-                    icon={icon}
-                    background={background}
-                  />
-                </motion.div>
-              ))}
-            </div>
           </div>
-        </motion.div>
 
-    
+          {/* Skills by Category */}
+          <div className="space-y-6">
+            {skillCategories.map(([category, skills], categoryIndex) => (
+              <motion.div
+                key={category}
+                className="space-y-3"
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ duration: 0.5, delay: 0.9 + categoryIndex * 0.1 }}
+              >
+                <h3 className="text-lg font-semibold text-foreground/80 mb-2">
+                  {category}
+                </h3>
+                <div className="flex flex-wrap gap-2.5">
+                  {skills.map((skill, skillIndex) => (
+                    <motion.span
+                      key={skill.name}
+                      className={`px-4 py-2 rounded-lg text-sm font-semibold ${skill.color} ${skill.background} ${skill.isBlack ? '' : 'bg-opacity-10'} border-2 border-current border-opacity-30 ${skill.isBlack ? 'hover:opacity-80' : 'hover:bg-opacity-20'} hover:border-opacity-50 hover:shadow-md transition-all duration-200 cursor-default flex items-center gap-2.5`}
+                      initial={{ scale: 0.95, opacity: 0, y: 5 }}
+                      animate={{ scale: 1, opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.25,
+                        delay: 1 + categoryIndex * 0.08 + skillIndex * 0.015,
+                        ease: [0.25, 0.1, 0.25, 1]
+                      }}
+                      whileHover={{ 
+                        scale: 1.03,
+                        y: -2,
+                        transition: { duration: 0.2 }
+                      }}
+                    >
+                      <span className="flex-shrink-0 w-4 h-4 flex items-center justify-center [&>svg]:w-4 [&>svg]:h-4 [&>svg]:flex-shrink-0 [&>svg]:inline-block">
+                        {skill.icon}
+                      </span>
+                      <span>{skill.name}</span>
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </motion.div>
     </div>
   );

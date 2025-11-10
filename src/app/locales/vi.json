@@ -71,12 +71,14 @@
       "level": {
         "basic": "Cơ bản",
         "advanced": "Nâng cao",
-        "tools": "Công cụ"
+        "tools": "Công cụ",
+        "hackathon": "Hackathon"
       },
       "certs": {
         "jsAdvanced": "Chứng chỉ JavaScript Nâng cao",
         "jsBasic": "Chứng chỉ JavaScript Cơ bản",
-        "ubuntuWsl": "Ubuntu & WSL - Công cụ dành cho Dev"
+        "ubuntuWsl": "Ubuntu & WSL - Công cụ dành cho Dev",
+        "hackathonParticipation": "Chứng chỉ Tham gia Hackathon"
       }
     },
     "education": {

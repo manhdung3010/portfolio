@@ -5,11 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Trophy, ExternalLink, X } from "lucide-react";
 import { useLanguage } from "@/app/contexts/LanguageContext";
 
-
-
-
-// moved into component to use translations
-
 export default function Achievements() {
   const { t, language } = useLanguage();
   const certifications = [
@@ -36,6 +31,13 @@ export default function Achievements() {
       credential: t('sections.achievements.level.tools'),
       link: 'https://fullstack.edu.vn/',
       image: '/images/ubuntu-with-WSL-certificate.png',
+    },
+    {
+      name: t('sections.achievements.certs.hackathonParticipation'),
+      date: language === 'vi' ? '2025' : '2025',
+      credential: t('sections.achievements.level.hackathon'),
+      link: 'https://fullstack.edu.vn/',
+      image: '/images/Certificate v2 - Participation-Hackathon.png',
     }
   ];
   const [preview, setPreview] = useState<null | { src: string; alt: string }>(null);

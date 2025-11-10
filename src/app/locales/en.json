@@ -70,12 +70,14 @@
       "level": {
         "basic": "Basic",
         "advanced": "Advanced",
-        "tools": "Tools"
+        "tools": "Tools",
+        "hackathon": "Hackathon"
       },
       "certs": {
         "jsAdvanced": "Advanced JavaScript Certificate",
         "jsBasic": "Basic JavaScript Certificate",
-        "ubuntuWsl": "Ubuntu & WSL - Developer Tools"
+        "ubuntuWsl": "Ubuntu & WSL - Developer Tools",
+        "hackathonParticipation": "Hackathon Participation Certificate"
       }
     },
     "education": {
