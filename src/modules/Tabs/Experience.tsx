@@ -17,6 +17,31 @@ const experiencesVi = [
     logo: "/experience/physcode-logo.png",
     projects: [
       {
+        name: "TSAR Stock Exchange Platform (Nền tảng giao dịch & quản lý tài chính)",
+        description: "Nền tảng giao dịch và quản lý tài chính bao gồm ví, giao dịch, sổ cái và thanh toán theo kiến trúc event-driven.",
+        tech: ["NestJS 11", "TypeScript", "Next.js", "PostgreSQL", "TimescaleDB", "Prisma", "Redis", "Kafka", "AWS S3", "Docker", "Turborepo", "pnpm"],
+        demo: "https://tsarse.com/",
+        responsibilities: [
+          "Phát triển backend API và background jobs cho các nghiệp vụ ví, giao dịch, sổ cái và thanh toán",
+          "Thiết kế và triển khai kiến trúc event-driven với Kafka cho audit log và xử lý sự kiện",
+          "Xây dựng hàng đợi công việc BullMQ + Redis cho email, SMS và thanh toán",
+          "Làm việc với PostgreSQL và TimescaleDB để xử lý dữ liệu giao dịch time-series",
+          "Phát triển web dashboard cho quản trị và khách hàng (auth, ví, sổ cái, báo cáo)",
+          "Thiết lập môi trường phát triển Docker Compose và quản lý monorepo bằng Turborepo"
+        ]
+      },
+      {
+        name: "AI Chatbot Platform (Nền tảng chatbot AI cho doanh nghiệp)",
+        description: "Thiết kế và xây dựng web app đa tenant cùng dashboard quản trị với widget chatbot nhúng và thanh toán tích hợp.",
+        tech: ["Next.js", "TypeScript", "Ant Design", "Tailwind CSS", "Konva.js", "React-Konva", "Zustand", "React Query", "MongoDB", "Redis", "AWS S3", "PayPal"],
+        demo: "https://chatboz.com/",
+        responsibilities: [
+          "Thiết kế & phát triển web app và dashboard quản trị",
+          "Xây dựng hệ thống chat, lịch sử chat và ChatWidget nhúng website",
+          "Thiết kế API embed đa nền tảng và tích hợp thanh toán PayPal"
+        ]
+      },
+      {
         name: "Mosyne AI – Nền tảng chỉnh sửa ảnh (3 thành viên)",
         description: "Phát triển nền tảng web chỉnh sửa ảnh chuyên nghiệp ứng dụng AI, cung cấp các công cụ như xóa nền, inpainting, phóng to ảnh, sinh nền từ văn bản... Hệ thống hỗ trợ giao diện canvas trực quan, thao tác drag & drop, chia sẻ dự án, xác thực người dùng, thanh toán, và bộ công cụ thiết kế thương hiệu.",
         tech: ["NextJS", "TypeScript", "Ant Design", "Tailwind CSS", "Konva.js", "React-Konva", "Zustand", "React Query", "MongoDB", "AWS S3", "Redis", "PayPal"],
@@ -74,6 +99,17 @@ const experiencesVi = [
         ]
       },
       {
+        name: "Mephar – Hệ thống bán hàng & POS cho nhà thuốc",
+        description: "Phát triển dashboard quản trị cho bán hàng, kho, chuỗi cửa hàng; xây dựng form nghiệp vụ phức tạp với Recoil và báo cáo in ấn barcode.",
+        tech: ["Next.js", "TypeScript", "Recoil", "React Hook Form", "Yup", "Chart.js", "ExcelJS", "PDFMake", "Axios", "Firebase", "Barcode"],
+        demo: "https://mephar.com/",
+        responsibilities: [
+          "Phát triển dashboard quản trị cho bán hàng, kho, chuỗi cửa hàng",
+          "Xây dựng form nghiệp vụ phức tạp, quản lý state bằng Recoil",
+          "Xây dựng báo cáo (Excel, PDF) và tích hợp in ấn, barcode"
+        ]
+      },
+      {
         name: "UpdownCrypto (2 thành viên)",
         description: "Ứng dụng web sử dụng thư viện TradingView Lightweight Charts để hiển thị biến động giá Bitcoin theo thời gian thực. Ứng dụng cung cấp các tính năng theo dõi biến động giá ở cấp độ giây và phút, đảm bảo dữ liệu chính xác và chi tiết.",
         tech: ["ReactJs", "TypeScript", "Ant Design", "Tailwind CSS", "Java Spring Boot", "MongoDB", "WebSocket", "Socket.IO"],
@@ -113,6 +149,31 @@ const experiencesEn = [
     mode: "Onsite",
     logo: "/experience/physcode-logo.png",
     projects: [
+      {
+        name: "TSAR Stock Exchange Platform",
+        description: "Trading and treasury platform covering wallet, transaction, ledger, and payments with event-driven architecture.",
+        tech: ["NestJS 11", "TypeScript", "Next.js", "PostgreSQL", "TimescaleDB", "Prisma", "Redis", "Kafka", "AWS S3", "Docker", "Turborepo", "pnpm"],
+        demo: "https://tsarse.com/",
+        responsibilities: [
+          "Develop backend APIs and background jobs for wallet, transaction, ledger, and payment workflows",
+          "Design and implement event-driven architecture with Kafka for audit logging and event processing",
+          "Build BullMQ + Redis job queues for email, SMS, and payment tasks",
+          "Work with PostgreSQL and TimescaleDB to handle time-series transaction data",
+          "Develop web dashboards for admins and customers (auth, wallet, ledger, reporting)",
+          "Set up Docker Compose development environment and manage monorepo with Turborepo"
+        ]
+      },
+      {
+        name: "AI Chatbot Platform",
+        description: "Multi-tenant AI chatbot web app and admin dashboard with embeddable widgets and payment integrations.",
+        tech: ["Next.js", "TypeScript", "Ant Design", "Tailwind CSS", "Konva.js", "React-Konva", "Zustand", "React Query", "MongoDB", "Redis", "AWS S3", "PayPal"],
+        demo: "https://chatboz.com/",
+        responsibilities: [
+          "Design and develop the web app and admin dashboard",
+          "Build chat system, chat history, and embeddable ChatWidget for websites",
+          "Design multi-platform embed APIs and integrate PayPal payments"
+        ]
+      },
       {
         name: "Mosyne AI – AI-powered image editor (3 members)",
         description: "Built a professional AI image editing web platform with tools like background removal, inpainting, upscaling, and text-to-background. Includes intuitive canvas UI, drag & drop, project sharing, authentication, payments, and brand design toolkit.",
@@ -168,6 +229,17 @@ const experiencesEn = [
           "Managed image projects (save, share link, auto-save, thumbnails)",
           "Integrated PayPal, built service packages & feature limits",
           "Optimized performance (SSR, lazy load) & security (CSRF, validation)"
+        ]
+      },
+      {
+        name: "Mephar – Pharmacy POS & retail management",
+        description: "Admin dashboard for pharmacy sales, inventory, and multi-store operations; complex business forms with Recoil; reporting/printing with barcode.",
+        demo: "https://mephar.com/",
+        tech: ["Next.js", "TypeScript", "Recoil", "React Hook Form", "Yup", "Chart.js", "ExcelJS", "PDFMake", "Axios", "Firebase", "Barcode"],
+        responsibilities: [
+          "Build admin dashboards for sales, inventory, and multi-branch operations",
+          "Implement complex business forms using React Hook Form, Yup, and Recoil for state",
+          "Create Excel/PDF reports with printing and barcode integration"
         ]
       },
       {

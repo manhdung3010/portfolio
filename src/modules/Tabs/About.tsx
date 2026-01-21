@@ -4,10 +4,25 @@ import { motion } from "framer-motion";
 import { Download, ChevronDown, Calendar, MapPin, GraduationCap, Briefcase } from "lucide-react";
 import { useState } from "react";
 import { useLanguage } from "../../app/contexts/LanguageContext";
+import Image from "next/image";
 
 export default function About() {
   const [expandedJob, setExpandedJob] = useState<number | null>(null);
   const { t } = useLanguage();
+
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = '/files/CV_NguyenManhDung_FullstackDeveloper.pdf';
+    link.download = 'CV_NguyenManhDung_FullstackDeveloper.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleDownloadPortfolio = () => {
+    // Mở trang web trong tab mới để người dùng có thể tải về
+    window.open('https://portfolio-manhdung3010.vercel.app', '_blank');
+  };
 
   const careerJourney = [
     {
@@ -104,22 +119,21 @@ export default function About() {
             >
               {t('sections.about.content.signature')}
             </motion.p>
-            <motion.p 
-              className="text-primary font-semibold text-lg"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ 
-                duration: 0.5, 
-                delay: 1.8,
-                ease: "backOut"
-              }}
-              whileHover={{ 
-                scale: 1.05,
-                transition: { duration: 0.2 }
-              }}
+            <motion.div 
+              className="relative inline-block"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 1.8 }}
             >
-              dũng
-            </motion.p>
+              <Image
+                src="/images/signature.png"
+                alt="Signature"
+                width={120}
+                height={40}
+                className="h-auto w-auto max-h-10"
+                priority
+              />
+            </motion.div>
           </motion.div>
         </div>
       </motion.div>
@@ -411,6 +425,7 @@ export default function About() {
           transition={{ duration: 0.6, delay: 2.4, ease: "easeOut" }}
         >
           <motion.button 
+            onClick={handleDownloadPortfolio}
             className="px-6 py-3 bg-primary text-primary-foreground hover:text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-all duration-300 flex items-center gap-2 group relative overflow-hidden"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -438,6 +453,7 @@ export default function About() {
           </motion.button>
           
           <motion.button 
+            onClick={handleDownloadCV}
             className="px-6 py-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-all duration-300 flex items-center gap-2 group relative overflow-hidden"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}

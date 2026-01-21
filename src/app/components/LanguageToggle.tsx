@@ -24,9 +24,10 @@ export default function LanguageToggle() {
             ? 'bg-primary text-primary-foreground shadow-sm'
             : 'text-muted-foreground hover:text-primary'
         }`}
+        suppressHydrationWarning
       >
         <Globe className="w-3 h-3" />
-        {t('common.language.en')}
+        <span suppressHydrationWarning>{t('common.language.en')}</span>
       </motion.button>
       <motion.button
         whileHover={{ scale: 1.05 }}
@@ -37,9 +38,10 @@ export default function LanguageToggle() {
             ? 'bg-primary text-primary-foreground shadow-sm'
             : 'text-muted-foreground hover:text-primary'
         }`}
+        suppressHydrationWarning
       >
         <Languages className="w-3 h-3" />
-        {t('common.language.vi')}
+        <span suppressHydrationWarning>{t('common.language.vi')}</span>
       </motion.button>
     </div>
   );

@@ -100,10 +100,12 @@ export default function Sidebar({
 
             {/* Name and Username */}
             <div className="text-center">
-              <h2 className="text-xl font-bold text-foreground">
+              <h2 className="text-xl font-bold text-foreground" suppressHydrationWarning>
                 {t("profile.name")}
               </h2>
-              <p className="text-sm text-muted-foreground">{t("profile.title")}</p>
+              <p className="text-sm text-muted-foreground" suppressHydrationWarning>
+                {t("profile.title")}
+              </p>
             </div>
 
             {/* Language and Theme Toggle */}
@@ -132,7 +134,9 @@ export default function Sidebar({
             >
               <div className="flex items-center gap-3">
                 <item.icon className="w-5 h-5" />
-                <span className="font-medium">{item.label}</span>
+                <span className="font-medium" suppressHydrationWarning>
+                  {item.label}
+                </span>
               </div>
               {activeTab === item.id && <ArrowRight className="w-4 h-4" />}
             </motion.button>
@@ -143,7 +147,7 @@ export default function Sidebar({
 
         {/* Copyright */}
         <div className="p-4 border-t border-border">
-          <p className="text-xs text-muted-foreground text-center">
+          <p className="text-xs text-muted-foreground text-center" suppressHydrationWarning>
             {t("common.copyright")}
           </p>
         </div>
@@ -198,10 +202,12 @@ export default function Sidebar({
 
                   {/* Name and Username */}
                   <div className="text-center">
-                    <h2 className="text-xl font-bold text-foreground">
+                    <h2 className="text-xl font-bold text-foreground" suppressHydrationWarning>
                       {t("profile.name")}
                     </h2>
-                    <p className="text-sm text-muted-foreground">{t("profile.title")}</p>
+                    <p className="text-sm text-muted-foreground" suppressHydrationWarning>
+                      {t("profile.title")}
+                    </p>
                   </div>
 
                   {/* Language and Theme Toggle */}
@@ -242,7 +248,7 @@ export default function Sidebar({
 
               {/* Copyright */}
               <div className="p-4 border-t border-border">
-                <p className="text-xs text-muted-foreground text-center">
+                <p className="text-xs text-muted-foreground text-center" suppressHydrationWarning>
                   {t("common.copyright")}
                 </p>
               </div>

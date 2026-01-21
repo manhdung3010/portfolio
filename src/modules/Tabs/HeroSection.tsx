@@ -100,7 +100,7 @@ export default function HeroSection() {
         transition={{ duration: 0.7, delay: 0.2 }}
       >
         {/* Main Heading */}
-        <h1 className="text-5xl lg:text-6xl font-bold mb-6 py-3 gradient-text">
+        <h1 className="text-5xl lg:text-6xl font-bold mb-6 py-3 gradient-text" suppressHydrationWarning>
           Hi, I&apos;m {t("profile.name")}
         </h1>
         
@@ -108,11 +108,11 @@ export default function HeroSection() {
         <div className="flex items-center gap-4 mb-6 text-muted-foreground">
           <div className="flex items-center gap-2">
             <MapPin className="w-5 h-5" />
-            <span>{t("profile.location")}</span>
+            <span suppressHydrationWarning>{t("profile.location")}</span>
           </div>
           <div className="flex items-center gap-2">
             <CheckCircle className="w-5 h-5 text-green-500" />
-            <span>{t("profile.available")}</span>
+            <span suppressHydrationWarning>{t("profile.available")}</span>
           </div>
         </div>
 
@@ -122,6 +122,7 @@ export default function HeroSection() {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.4 }}
+          suppressHydrationWarning
         >
           {t("profile.description")}
         </motion.p>
@@ -137,6 +138,7 @@ export default function HeroSection() {
             href="?tab=projects"
             scroll={false}
             className="px-6 py-3 bg-primary text-primary-foreground font-medium rounded-lg hover:bg-primary/90 transition-colors duration-200"
+            suppressHydrationWarning
           >
             {t("actions.viewWork")}
           </Link>
@@ -144,6 +146,7 @@ export default function HeroSection() {
             href="?tab=contact"
             scroll={false}
             className="px-6 py-3 border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary hover:text-primary-foreground transition-colors duration-200"
+            suppressHydrationWarning
           >
             {t("actions.getInTouch")}
           </Link>
@@ -161,7 +164,7 @@ export default function HeroSection() {
           {/* Section Header */}
           <div className="flex items-center gap-3 mb-6">
             <Code2 className="w-7 h-7 text-primary" />
-            <h2 className="text-3xl font-bold gradient-text">
+            <h2 className="text-3xl font-bold gradient-text" suppressHydrationWarning>
               {t("sections.skills.title")}
             </h2>
           </div>
