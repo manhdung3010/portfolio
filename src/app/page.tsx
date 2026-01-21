@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import FloatingParticles from "./components/FloatingParticles";
 import AnimatedBackground from "./components/AnimatedBackground";
+import VisitTracker from "./components/VisitTracker";
 import HomePage from "@/modules/Home";
 
 export const metadata: Metadata = {
@@ -33,6 +34,7 @@ export default function Home() {
     <div className="relative h-screen overflow-hidden">
       <AnimatedBackground />
       <FloatingParticles />
+      <VisitTracker />
       <Suspense fallback={null}>
         <HomePage/>
       </Suspense>
