@@ -175,36 +175,26 @@ export default function HeroSection() {
               <motion.div
                 key={category}
                 className="space-y-3"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.9 + categoryIndex * 0.1 }}
+                // Keep category animation lightweight (avoid animating every chip on first load)
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, delay: 0.9 + categoryIndex * 0.06 }}
               >
                 <h3 className="text-lg font-semibold text-foreground/80 mb-2">
                   {category}
                 </h3>
                 <div className="flex flex-wrap gap-2.5">
                   {skills.map((skill, skillIndex) => (
-                    <motion.span
+                    <span
                       key={skill.name}
-                      className={`px-4 py-2 rounded-lg text-sm font-semibold ${skill.color} ${skill.background} ${skill.isBlack ? '' : 'bg-opacity-10'} border-2 border-current border-opacity-30 ${skill.isBlack ? 'hover:opacity-80' : 'hover:bg-opacity-20'} hover:border-opacity-50 hover:shadow-md transition-all duration-200 cursor-default flex items-center gap-2.5`}
-                      initial={{ scale: 0.95, opacity: 0, y: 5 }}
-                      animate={{ scale: 1, opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.25,
-                        delay: 1 + categoryIndex * 0.08 + skillIndex * 0.015,
-                        ease: [0.25, 0.1, 0.25, 1]
-                      }}
-                      whileHover={{ 
-                        scale: 1.03,
-                        y: -2,
-                        transition: { duration: 0.2 }
-                      }}
+                      // Hover interactions are handled by CSS to reduce initial animation workload.
+                      className={`px-4 py-2 rounded-lg text-sm font-semibold ${skill.color} ${skill.background} ${skill.isBlack ? '' : 'bg-opacity-10'} border-2 border-current border-opacity-30 ${skill.isBlack ? 'hover:opacity-80' : 'hover:bg-opacity-20'} hover:border-opacity-50 hover:shadow-md transition-all duration-200 cursor-default flex items-center gap-2.5 hover:-translate-y-0.5 hover:scale-[1.02] will-change-transform`}
                     >
                       <span className="flex-shrink-0 w-4 h-4 flex items-center justify-center [&>svg]:w-4 [&>svg]:h-4 [&>svg]:flex-shrink-0 [&>svg]:inline-block">
                         {skill.icon}
                       </span>
                       <span>{skill.name}</span>
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
               </motion.div>

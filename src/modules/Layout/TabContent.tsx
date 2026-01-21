@@ -25,15 +25,17 @@ const tabs = [
 
 export default function TabContent({ activeTab, onTabChange }: TabContentProps) {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const didMountRef = useRef(false);
   const ActiveComponent = tabs.find(tab => tab.id === activeTab)?.component || HeroSection;
 
   // Scroll to top when tab changes
   useEffect(() => {
     if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      // Avoid smooth-scroll on initial mount (it can cause a brief "jank" during first paint/hydration)
+      // but keep it for subsequent tab switches.
+      const behavior = didMountRef.current ? "smooth" : "auto";
+      scrollContainerRef.current.scrollTo({ top: 0, behavior });
+      didMountRef.current = true;
     }
   }, [activeTab]);
 

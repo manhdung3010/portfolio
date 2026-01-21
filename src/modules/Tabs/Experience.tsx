@@ -706,9 +706,19 @@ export default function Experience() {
                     
                     {/* Freelance Badge */}
                     <div className="flex items-center gap-2">
-                      <span className="bg-purple-500/10 text-purple-500 px-3 py-1 rounded-full text-sm font-medium">
-                        {freelance.type}
-                      </span>
+                      {freelance.demo && (
+                            <div className="pt-2">
+                              <a
+                                href={freelance.demo}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
+                              >
+                                <ExternalLink className="w-4 h-4" />
+                                <span className="text-sm font-medium">View Demo</span>
+                              </a>
+                            </div>
+                          )}
                     </div>
                   </div>
 
@@ -791,20 +801,7 @@ export default function Experience() {
                             </ul>
                           </div>
 
-                          {/* Demo Link */}
-                          {freelance.demo && (
-                            <div className="pt-2">
-                              <a
-                                href={freelance.demo}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors"
-                              >
-                                <ExternalLink className="w-4 h-4" />
-                                <span className="text-sm font-medium">View Demo</span>
-                              </a>
-                            </div>
-                          )}
+                         
                         </div>
                       </motion.div>
                     </div>
