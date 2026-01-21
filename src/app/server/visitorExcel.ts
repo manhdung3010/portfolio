@@ -50,7 +50,9 @@ function ensureHeaderRow(worksheet: ExcelJS.Worksheet): void {
   }
 
   const firstRow = worksheet.getRow(1);
-  const firstRowValues = (firstRow?.values as any[] ?? []).slice(1);
+  const firstRowValues = (
+    (firstRow?.values ?? []) as ExcelJS.CellValue[]
+  ).slice(1);
   const isHeaderPrefix =
     firstRowValues.length > 0 &&
     firstRowValues.every((value, idx) => value === HEADER_ROW[idx]);

@@ -21,7 +21,6 @@ function normalizeString(value: unknown, fallback = ""): string {
 declare global {
   // Simple in-process queue to reduce concurrent writes within a single Node process.
   // Note: This does NOT coordinate across multiple instances (e.g., serverless scale-out).
-  // eslint-disable-next-line no-var
   var __visitorExcelWriteQueue: Promise<unknown> | undefined;
 }
 
