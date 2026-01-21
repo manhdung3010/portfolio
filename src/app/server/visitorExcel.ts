@@ -4,6 +4,7 @@ import path from "path";
 
 export type VisitorRow = {
   timestampIso: string;
+  viewedAtLocal: string;
   ip: string;
   userAgent: string;
   pathname: string;
@@ -14,6 +15,7 @@ export type VisitorRow = {
 const WORKSHEET_NAME = "visitors";
 const HEADER_ROW = [
   "timestampIso",
+  "viewedAtLocal",
   "ip",
   "userAgent",
   "pathname",
@@ -21,7 +23,7 @@ const HEADER_ROW = [
   "language",
 ] as const;
 
-function getDataFilePath(): string {
+export function getVisitorExcelPath(): string {
   // Next.js server runtime: cwd is the project root in most hosting setups.
   return path.join(process.cwd(), "data", "visitors.xlsx");
 }
@@ -40,24 +42,36 @@ async function fileExists(filePath: string): Promise<boolean> {
   }
 }
 
-function addHeaderIfMissing(worksheet: ExcelJS.Worksheet): void {
+function ensureHeaderRow(worksheet: ExcelJS.Worksheet): void {
+  if (worksheet.rowCount === 0) {
+    worksheet.addRow([...HEADER_ROW]);
+    worksheet.getRow(1).font = { bold: true };
+    return;
+  }
+
   const firstRow = worksheet.getRow(1);
   const firstRowValues = (firstRow?.values as any[] ?? []).slice(1);
-  const looksLikeHeader =
-    firstRowValues.length >= HEADER_ROW.length &&
-    HEADER_ROW.every((h, idx) => firstRowValues[idx] === h);
+  const isHeaderPrefix =
+    firstRowValues.length > 0 &&
+    firstRowValues.every((value, idx) => value === HEADER_ROW[idx]);
 
-  if (!looksLikeHeader) {
+  if (!isHeaderPrefix) {
     worksheet.insertRow(1, [...HEADER_ROW]);
     worksheet.getRow(1).font = { bold: true };
+    return;
   }
+
+  HEADER_ROW.forEach((header, idx) => {
+    firstRow.getCell(idx + 1).value = header;
+  });
+  firstRow.font = { bold: true };
 }
 
 export async function appendVisitorRow(row: VisitorRow): Promise<{
   filePath: string;
   rowNumber: number;
 }> {
-  const filePath = getDataFilePath();
+  const filePath = getVisitorExcelPath();
   await ensureDataDirExists(filePath);
 
   const workbook = new ExcelJS.Workbook();
@@ -70,13 +84,14 @@ export async function appendVisitorRow(row: VisitorRow): Promise<{
   const worksheet =
     workbook.getWorksheet(WORKSHEET_NAME) ?? workbook.addWorksheet(WORKSHEET_NAME);
 
-  addHeaderIfMissing(worksheet);
+  ensureHeaderRow(worksheet);
 
   const rowNumber =
     worksheet.rowCount >= 1 ? worksheet.rowCount + 1 : 2; // 1 is header
 
   worksheet.addRow([
     row.timestampIso,
+    row.viewedAtLocal,
     row.ip,
     row.userAgent,
     row.pathname,
@@ -87,6 +102,7 @@ export async function appendVisitorRow(row: VisitorRow): Promise<{
   // Keep columns readable in Excel.
   worksheet.columns = [
     { key: "timestampIso", width: 26 },
+    { key: "viewedAtLocal", width: 24 },
     { key: "ip", width: 18 },
     { key: "userAgent", width: 60 },
     { key: "pathname", width: 24 },
@@ -97,6 +113,18 @@ export async function appendVisitorRow(row: VisitorRow): Promise<{
   await workbook.xlsx.writeFile(filePath);
 
   return { filePath, rowNumber };
+}
+
+export async function readVisitorExcelFile(): Promise<{
+  filePath: string;
+  data: Buffer;
+} | null> {
+  const filePath = getVisitorExcelPath();
+  const exists = await fileExists(filePath);
+  if (!exists) return null;
+
+  const data = await fs.readFile(filePath);
+  return { filePath, data };
 }
 
 

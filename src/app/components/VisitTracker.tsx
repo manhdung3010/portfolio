@@ -6,6 +6,7 @@ type TrackVisitPayload = {
   pathname: string;
   referrer: string;
   language: string;
+  viewedAtLocal: string;
 };
 
 const SESSION_KEY = "visit_logged_v1";
@@ -21,6 +22,7 @@ export default function VisitTracker() {
         pathname: window.location.pathname,
         referrer: document.referrer || "",
         language: navigator.language || "",
+        viewedAtLocal: new Date().toLocaleString(),
       };
 
       // Fire-and-forget; keepalive helps on quick navigations/close tab.

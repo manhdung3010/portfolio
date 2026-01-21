@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
-import { appendVisitorRow, type VisitorRow } from "@/app/server/visitorExcel";
+import {
+  appendVisitorRow,
+  readVisitorExcelFile,
+  type VisitorRow,
+} from "@/app/server/visitorExcel";
 
 export const runtime = "nodejs";
 
@@ -41,9 +45,12 @@ export async function POST(req: Request) {
     const pathname = normalizeString(body?.pathname, "/");
     const referrer = normalizeString(body?.referrer, "");
     const language = normalizeString(body?.language, "");
+    const viewedAtLocal = normalizeString(body?.viewedAtLocal, "");
 
+    const timestampIso = new Date().toISOString();
     const row: VisitorRow = {
-      timestampIso: new Date().toISOString(),
+      timestampIso,
+      viewedAtLocal: viewedAtLocal || timestampIso,
       ip,
       userAgent,
       pathname,
@@ -56,6 +63,35 @@ export async function POST(req: Request) {
     return NextResponse.json({
       ok: true,
       saved: { rowNumber: result.rowNumber },
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Unknown error";
+    return NextResponse.json(
+      { ok: false, error: message },
+      { status: 500 },
+    );
+  }
+}
+
+export async function GET() {
+  try {
+    const file = await readVisitorExcelFile();
+    if (!file) {
+      return NextResponse.json(
+        { ok: false, error: "visitors.xlsx not found" },
+        { status: 404 },
+      );
+    }
+
+    const body = new Uint8Array(file.data);
+
+    return new Response(body, {
+      headers: {
+        "content-type":
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        "content-disposition": 'attachment; filename="visitors.xlsx"',
+        "cache-control": "no-store",
+      },
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown error";
