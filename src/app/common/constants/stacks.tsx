@@ -1,8 +1,18 @@
 import { BiLogoPostgresql } from "react-icons/bi";
 import { BsFillBootstrapFill } from "react-icons/bs";
-import { FaNpm, FaPython, FaJava, FaAngular, FaReact, FaDocker, FaAws, FaGoogle, FaMicrosoft } from "react-icons/fa6";
 import {
-  SiCss3,
+  FaNpm,
+  FaPython,
+  FaJava,
+  FaAngular,
+  FaReact,
+  FaDocker,
+  FaAws,
+  FaGoogle,
+  FaMicrosoft,
+  FaCss3,
+} from "react-icons/fa6";
+import {
   SiExpress,
   SiGithub,
   SiHtml5,
@@ -23,7 +33,6 @@ import {
   SiYarn,
   SiNestjs,
   SiDocker,
-  SiNuxtdotjs,
   SiAngular,
   SiWebpack,
   SiFormik,
@@ -35,7 +44,6 @@ import {
   SiGraphql,
   SiApollographql,
   SiSocketdotio,
-  SiAmazon,
   SiGooglecloud,
   SiVercel,
   SiRender,
@@ -104,7 +112,7 @@ export const STACKS: SkillProps = {
     isActive: true,
   },
   "Nuxt.js": {
-    icon: <SiNuxtdotjs size={iconSize} />,
+    icon: <SiVuedotjs size={iconSize} />,
     background: "bg-green-600",
     color: "text-green-600",
     isActive: true,
@@ -260,7 +268,7 @@ export const STACKS: SkillProps = {
     isActive: true,
   },
   AWS: {
-    icon: <SiAmazon size={iconSize} />,
+    icon: <FaAws size={iconSize} />,
     background: "bg-orange-500",
     color: "text-orange-500",
     isActive: true,
@@ -356,7 +364,7 @@ export const STACKS: SkillProps = {
     isActive: true,
   },
   CSS3: {
-    icon: <SiCss3 size={iconSize} />,
+    icon: <FaCss3 size={iconSize} />,
     background: "bg-blue-500",
     color: "text-blue-500",
     isActive: true,
